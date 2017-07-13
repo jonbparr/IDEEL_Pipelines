@@ -1,9 +1,10 @@
 ###############################################################################
-# Purpose:  SnakeMake File to align the 1877 SN samples that we are analyzing for plasmepsin copy number variation samples 
-# Authors: CMP, NFB, DF                                                    
+# Purpose:  SnakeMake File to take FASTQs and make BAMs
+# Authors: Nick Brazeau & Christian Parobek                                          
 #Given: FASTQ
-#Return: BAM, VCF, coverage    
-#Updated on 5/24 to include Kure's use of the updated PicardTools single file Picard.jar (see java -jar /nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar -h )                                                        
+#Return: BAM 
+#Remarks: Note, you will have to change the paths and project specifics as well as the tools paths (depending on user) for each project/each new directory                               
+#		  You will also need to make your own intervals/all_chrs.intervals file depending on your project and your reference sequence
 ###############################################################################
 
 
@@ -28,7 +29,7 @@ GFF = '/proj/ideel/julianog/refs/Pf3D7_v13.0/PlasmoDB-13.0_Pfalciparum3D7.gff'
 
 
 
-######## Always on #########
+######## Tools to Call #########
 PICARD = '/nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar'
 GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
@@ -122,6 +123,6 @@ rule fastq_to_bam:
 # rule trim_illumina_Adaptors_fastqs:
 # 	 input: 'symlinks/{ds}_R1.fastq.gz', 'symlinks/{ds}_R2.fastq.gz', 
 # 	 output: 'symlinks/{ds}_R1.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R1.UNPAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R2.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R2.UNPAIREDtrimmomatictrimmed.fastq.gz',  
-# 	 shell: 'trimmomatic PE -threads 12 -trimlog symlinks/Relapse/trim_log.txt {input[0]} {input[1]} {output[0]} {output[1]} {output[2]} {output[3]} ILLUMINACLIP:/nas/longleaf/home/nfb/.linuxbrew/Cellar/trimmomatic/0.36/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE'
+# 	 shell: 'trimmomatic PE -threads 12 -trimlog symlinks/Relapse/trim_log.txt {input[0]} {input[1]} {output[0]} {output[1]} {output[2]} {output[3]} ILLUMINACLIP:/nas/longleaf/home/nfb/.linuxbrew/Cellar/trimmomatic/0.36/share/trimmomatic/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36'
 #     # Trimmomatic needed if illumina adpators are attached. The TRUE at the end keeps the paired end reads in R2
 #     # Want to align the PAIRED trimmed
