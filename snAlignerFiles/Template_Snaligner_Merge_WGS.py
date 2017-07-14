@@ -1,10 +1,12 @@
 ###############################################################################
 # Purpose:  SnakeMake File to take FASTQs and make BAMs
-# Authors: Nick Brazeau & Christian Parobek                                          
+# Authors: Christian Parobek & Nick Brazeau                                        
 #Given: FASTQ
 #Return: BAM 
 #Remarks: Note, you will have to change the paths and project specifics as well as the tools paths (depending on user) for each project/each new directory                               
 #		  You will also need to make your own intervals/all_chrs.intervals file depending on your project and your reference sequence
+#         You will need to add the BamMergeCommander to your path
+#         Input for BamMergeCommander is a tab delimited file that first column contains a header and sample names or sample IDs (some unique n.alphanumeric for your sample)   
 ###############################################################################
 
 
@@ -12,11 +14,8 @@
 WRKDIR = '/proj/ideel/meshnick/users/NickB/Projects/DRC_Pf_Project/PhyloSNPsMIPs/HathawayDownload/malaria-gen/'
 readWD = '/proj/ideel/meshnick/users/NickB/Projects/DRC_Pf_Project/PhyloSNPsMIPs/HathawayDownload/malaria-gen/'
 DATEDSAMPS, = glob_wildcards(WRKDIR + 'fastq/{ds}_R1.fastq.gz')
-MERGEDSAMPS, = glob_wildcards(WRKDIR + 'aln/{ms}.merged.bam')
-REALNSAMPS, = glob_wildcards(WRKDIR + 'aln/{rs}.realn.bam')
-#def first2(x): return x[:2] #can set "sample name wildcards to merge on here, change 2 -> ##"
-#SAMPLES = set([first2(x) for x in DATEDSAMPS])
-
+MERGEDSAMPS, = glob_wildcards(WRKDIR + 'aln/{merge}.merged.bam')
+MTDT - 
 
 ####### Turn on for Pv ##########
 #REF = '/proj/ideel/meshnick/Genomes/PvSAL1_v13.0/PlasmoDB-13.0_PvivaxSal1_Genome.fasta'
@@ -46,12 +45,10 @@ rule all:
 #	input: expand('aln/{ds}.bam', ds = DATEDSAMPS)  
 #    input: expand('aln/{ds}.sorted.bam', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.dedup.bam', ds = DATEDSAMPS) 
-#	input: expand('aln/{sample}.merged.bam', sample = SAMPLES)	
-#    input: expand('aln/{ms}.merged.bam.bai', ms = MERGEDSAMPS) 
-#   input: expand('aln/{ms}.realigner.intervals', ms = MERGEDSAMPS) 
-#	input: expand('aln/{ms}.realn.bam', ms = MERGEDSAMPS) 
-#	input: expand('aln/{rs}.renamed.realn.bam', rs = REALNSAMPS)
-    input: expand('aln/{rs}.renamed.realn.bam.bai', rs = REALNSAMPS)
+#	input: 'merge.log.file'                                                 # Run to here and then check file
+#    input: expand('aln/{merge}.merged.bam.bai', merge = MERGEDSAMPS) 
+#   input: expand('aln/{merge}.realigner.intervals', merge = MERGEDSAMPS) 
+#	input: expand('aln/{merge}.realn.bam', merge = MERGEDSAMPS) 
 
 ###############################################################################
 
@@ -61,12 +58,16 @@ rule all:
 ############################
 ######## Alignment #########
 ############################
+rule index_realigned: 
+	input: 'aln/{merge}.realn.bam'
+	output: 'aln/{merge}.realn.bam.bai'
+	shell: 'java -jar {PICARD} BuildBamIndex INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
 
 rule realn_indels:
-	input: bam = 'aln/{ms}.merged.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{ms}.realigner.intervals', 
-	output: 'aln/{ms}.realn.bam'
-	shell: 'java -jar {GATK} -T IndelRealigner \
-		-R {REF2} -I {input.bam} \
+	input: bam = 'aln/{merge}.merged.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{merge}.realigner.intervals', 
+	output: 'aln/{merge}.realn.bam'
+	shell: 'java -jar {GATK2} -T IndelRealigner \
+		-R {REF} -I {input.bam} \
 		-L {input.chrs} -targetIntervals {input.targets} \
 		-o {output}' 
 		# all_chrs.intervals includes just chrs and mito -- it is similar to a bed file for GATK Caller
@@ -74,20 +75,31 @@ rule realn_indels:
 		# Interval file from CMP direcotry
 
 rule find_indels:
-	input: bam = 'aln/{ms}.merged.bam', index = 'aln/{ms}.merged.bam.bai', chrs = 'intervals/all_chrs.intervals'
-	output: 'aln/{ms}.realigner.intervals'
-	shell: 'java -jar {GATK} -T RealignerTargetCreator \
-		-R {REF2} -I {input.bam} \
+	input: bam = 'aln/{merge}.merged.bam', index = 'aln/{merge}.merged.bam.bai', chrs = 'intervals/all_chrs.intervals'
+	output: 'aln/{merge}.realigner.intervals'
+	shell: 'java -jar {GATK2} -T RealignerTargetCreator \
+		-R {REF} -I {input.bam} \
 		-L {input.chrs} -o {output}'
 		# all_chrs.intervals includes just  chrs and mito
 
-rule index_merge: 
-	input: 'aln/{ms}.merged.bam'
-	output: 'aln/{ms}.merged.bam.bai'
+rule index_merged: 
+	input: 'aln/{merge}.merged.bam'
+	output: 'aln/{merge}.merged.bam.bai'
 	shell: 'java -jar {PICARD} BuildBamIndex INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
 
-rule merge_dedups:
 
+rule merge_dedups:
+	input: 'aln/CmdlineMerge_PvRelapseProject.sh'
+	output: 'merge.log.file'
+	shell: 'bash {input}; echo "The merge was completed using the custom Rscript BamMergeCommander -- good idea to check the CmdlineMerge table to confirm merge was appropriate" > {output}'
+
+rule make_merge_commandLine:
+	input:  metadata='{MTDT}',
+	params: dedupbams='{WRKDIR}/aln', 
+	    outdir = '{WRKDIR}/aln/',
+	output: 'aln/CmdlineMerge_PvRelapseProject.sh'
+	shell: 'BamMergeCommander --input {params.dedupbams} --metadata {input.metadata} --outdir {params.outdir} --output {output}'
+# note outdir needs forward slash, dedupbams does not
 
 rule mark_dups:
 	input: 'aln/{ds}.sorted.bam'
