@@ -30,12 +30,12 @@ REF = '/proj/ideel/meshnick/Genomes/Pf3D7_Sanger2017/Pfalciparum.genome.fasta'
 GFF = '/proj/ideel/meshnick/Genomes/Pf3D7_Sanger2017/Pfalciparum.gff3'
 # Note this version is compatible with the Pf3k Pipeline 
 
-######## Always on #########
-PICARD = '/nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar'
+######## Tools to Call #########
+PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java/picard.jar'
 GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
+FLASH = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/flash/1.2.11/bin/flash'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
-#TMPDIR = '/lustre/nfb/tmp_for_picard/'
-#pine for longleaf and lustre for killdevil
+
 
 ##########################################################################################
 
@@ -46,6 +46,7 @@ TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
 rule all:
 # SUMMARYSTATS
 #	input: 'symlinks/FASTQC/Log.txt'
+#	input: 'SumSTATsandQC/ValidateBams.tab.txt'
 #	input: expand('SumSTATsandQC/AlignSummary/{sample}.AlignSummary.Metrics', 'SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', 'SumSTATsandQC/coverage/data/{sample}.cov', 'SumSTATsandQC/coverage/d_bedtools/{sample}.dbedtools.cov', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/AlignSummary/{sample}.AlignSummary.Metrics', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', sample = SAMPLES)
@@ -132,6 +133,16 @@ rule AlignSummaryMetrics:
           O={output}'
 # Need this for read length averages, etc. 
 
+###############################################
+########   VALIDATE SAM FILE MODULE   #########
+###############################################
+rule fastqc:
+	input: expand('aln/{sample}.recal.realn.bam', sample=SAMPLES)
+	output: 'SumSTATsandQC/ValidateBams.tab.txt'
+	shell: 'java -jar {PICARD} ValidateSamFile \
+		I={input} >> {output} '
+	
+	
 ######################################
 ########   FASTQC MODULE   #########
 #####################################

@@ -27,14 +27,12 @@ REALNSAMPS, = glob_wildcards(WRKDIR + 'aln/{rs}.realn.bam')
 REF2 = '/proj/ideel/meshnick/Genomes/Pf3D7_Pf3KDownload/Pfalciparum.genome.fasta'
 GFF = '/proj/ideel/julianog/refs/Pf3D7_v13.0/PlasmoDB-13.0_Pfalciparum3D7.gff'
 
-
-
 ######## Tools to Call #########
-PICARD = '/nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar'
+PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java/picard.jar'
 GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
+FLASH = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/flash/1.2.11/bin/flash'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
-#TMPDIR = '/lustre/nfb/tmp_for_picard/'
-#pine for longleaf and lustre for killdevil
+
 
 ##########################################################################################
 
@@ -46,7 +44,7 @@ rule all:
 #	input: expand('aln/{ds}.bam', ds = DATEDSAMPS)  
 #    input: expand('aln/{ds}.sorted.bam', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.dedup.bam', ds = DATEDSAMPS) 
-#	input: expand('aln/{sample}.merged.bam', sample = SAMPLES)	
+#	input: expand('aln/{sample}.matefixed.bam', sample = SAMPLES)	
 #    input: expand('aln/{ds}.merged.bam.bai', ms = MERGEDSAMPS) 
 #   input: expand('aln/{ds}.realigner.intervals', ms = MERGEDSAMPS) 
 #	input: expand('aln/{ds}.realn.bam', ms = MERGEDSAMPS) 
@@ -63,7 +61,7 @@ rule all:
 ############################
 
 rule realn_indels:
-	input: bam = 'aln/{ds}.dedup.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{ds}.realigner.intervals', 
+	input: bam = 'aln/{ds}.matefixed.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{ds}.realigner.intervals', 
 	output: 'aln/{ds}.realn.bam'
 	shell: 'java -jar {GATK} -T IndelRealigner \
 		-R {REF2} -I {input.bam} \
@@ -74,7 +72,7 @@ rule realn_indels:
 		# Interval file from CMP direcotry
 
 rule find_indels:
-	input: bam = 'aln/{ds}.dedup.bam', index = 'aln/{ds}.dedup.bam.bai', chrs = 'intervals/all_chrs.intervals'
+	input: bam = 'aln/{ds}.matefixed.bam', index = 'aln/{ds}.matefixed.bam.bai', chrs = 'intervals/all_chrs.intervals'
 	output: 'aln/{ds}.realigner.intervals'
 	shell: 'java -jar {GATK} -T RealignerTargetCreator \
 		-R {REF2} -I {input.bam} \
@@ -82,11 +80,17 @@ rule find_indels:
 		# all_chrs.intervals includes just  chrs and mito
 
 rule index_dedups: 
-	input: 'aln/{ds}.dedup.bam'
-	output: 'aln/{ds}.dedup.bam.bai'
+	input: 'aln/{ds}.matefixed.bam'
+	output: 'aln/{ds}.matefixed.bam.bai'
 	shell: 'java -jar {PICARD} BuildBamIndex INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
 
 
+rule matefix:
+	input: 'aln/{samp}.dedup.bam'
+	output: 'aln/{samp}.matefixed.bam'
+	shell: 'java -jar {PICARD} FixMateInformation INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
+	
+	
 rule mark_dups:
 	input: 'aln/{ds}.sorted.bam'
 	output:'aln/{ds}.dedup.bam','aln/{ds}.dedup.metrics'
@@ -97,17 +101,11 @@ rule mark_dups:
 		MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000'
 
 rule sort_bam:
-	input: 'aln/{ds}.matefixed.bam'
+	input: 'aln/{ds}.bam'
 	output: 'aln/{ds}.sorted.bam'
 	shell: 'java -jar {PICARD} SortSam \
 		I={input} O={output} \
 		SO=coordinate TMP_DIR={TMPDIR}'
-
-rule matefix:
-	input: 'aln/{samp}.bam'
-	output: 'aln/{samp}.matefixed.bam'
-	shell: 'java -jar {PICARD} FixMateInformation INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
-
 
 rule fastq_to_bam:
 	input: 'symlinks/{ds}_R1.fastq.gz', 'symlinks/{ds}_R2.fastq.gz'
