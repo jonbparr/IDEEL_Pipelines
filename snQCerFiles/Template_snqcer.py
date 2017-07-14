@@ -141,7 +141,7 @@ rule fastqc:
 	output: 'SumSTATsandQC/ValidateBams.tab.txt'
 	shell: 'java -jar {PICARD} ValidateSamFile \
 		I={input} >> {output} '
-	
+	# After this step you should run from the command line `cat 'SumSTATsandQC/ValidateBams.tab.txt | grep "ERROR"` -- if there are errors, STOP and figure out why
 	
 ######################################
 ########   FASTQC MODULE   #########
