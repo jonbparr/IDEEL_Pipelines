@@ -34,6 +34,8 @@ PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java
 GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
 FLASH = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/flash/1.2.11/bin/flash'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
+#PICARD = '/nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar'
+#GATK = '/nas02/apps/biojars-1.0/GenomeAnalysisTK-3.4-46/GenomeAnalysisTK.jar'
 
 
 ##########################################################################################
@@ -43,6 +45,7 @@ TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
 ############################
 #Rule all checks to see if file is the same and follows directions up to specified point
 rule all:
+#   input: expand('symlinks/{ds}_R1.PAIREDtrimmomatictrimmed.fastq.gz', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.bam', ds = DATEDSAMPS)  
 #    input: expand('aln/{ds}.sorted.bam', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.dedup.bam', ds = DATEDSAMPS) 
@@ -127,10 +130,11 @@ rule sort_bam:
 
 rule fastq_to_bam:
 	input: 'symlinks/{ds}_R1.fastq.gz', 'symlinks/{ds}_R2.fastq.gz'
+	#input: 'symlinks/{ds}_R1.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R2.PAIREDtrimmomatictrimmed.fastq.gz'
 	output: 'aln/{ds}.bam'
 	shell: 'bwa mem {REF2} {readWD}{input[0]} {readWD}{input[1]} \
 		-R "@RG\tID:bwa\tPL:illumina\tLB:{wildcards.ds}\tSM:{wildcards.ds[0]}{wildcards.ds[1]}{wildcards.ds[2]}{wildcards.ds[3]}{wildcards.ds[4]}" \
-		 samtools view -Sb - > {output}'
+		 | samtools view -Sb - > {output}'
 		# calling the @RG ID: 'bwa' because this resolves a clash with @PG ID --> I updated this recently to make it more unique for MERGING
 		# Can controls how long the read sample name is by wild cards for tSM, important if want to merge file later and need different library names but same sample names
 

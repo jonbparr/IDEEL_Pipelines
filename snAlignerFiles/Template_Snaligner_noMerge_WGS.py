@@ -12,8 +12,6 @@
 WRKDIR = '/proj/ideel/meshnick/users/NickB/Projects/DRC_Pf_Project/PhyloSNPsMIPs/HathawayDownload/malaria-gen/'
 readWD = '/proj/ideel/meshnick/users/NickB/Projects/DRC_Pf_Project/PhyloSNPsMIPs/HathawayDownload/malaria-gen/'
 DATEDSAMPS, = glob_wildcards(WRKDIR + 'fastq/{ds}_R1.fastq.gz')
-MERGEDSAMPS, = glob_wildcards(WRKDIR + 'aln/{ds}.merged.bam')
-REALNSAMPS, = glob_wildcards(WRKDIR + 'aln/{rs}.realn.bam')
 
 
 ####### Turn on for Pv ##########
@@ -30,6 +28,8 @@ PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java
 GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
 FLASH = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/flash/1.2.11/bin/flash'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
+#PICARD = '/nas02/apps/picard-2.2.4/picard-tools-2.2.4/picard.jar'
+#GATK = '/nas02/apps/biojars-1.0/GenomeAnalysisTK-3.4-46/GenomeAnalysisTK.jar'
 
 
 ##########################################################################################
@@ -39,15 +39,15 @@ TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
 ############################
 #Rule all checks to see if file is the same and follows directions up to specified point
 rule all:
+#   input: expand('symlinks/{ds}_R1.PAIREDtrimmomatictrimmed.fastq.gz', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.bam', ds = DATEDSAMPS)  
 #    input: expand('aln/{ds}.sorted.bam', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.dedup.bam', ds = DATEDSAMPS) 
-#	input: expand('aln/{sample}.matefixed.bam', sample = SAMPLES)	
-#    input: expand('aln/{ds}.merged.bam.bai', ms = MERGEDSAMPS) 
-#   input: expand('aln/{ds}.realigner.intervals', ms = MERGEDSAMPS) 
-#	input: expand('aln/{ds}.realn.bam', ms = MERGEDSAMPS) 
-#	input: expand('aln/{rs}.renamed.realn.bam', rs = REALNSAMPS)
-    input: expand('aln/{rs}.renamed.realn.bam.bai', rs = REALNSAMPS)
+#	input: expand('aln/{ds}.matefixed.bam', ds = DATEDSAMPS)
+#    input: expand('aln/{ds}.merged.bam.bai', ds = DATEDSAMPS) 
+#   input: expand('aln/{ds}.realigner.intervals', ds = DATEDSAMPS) 
+#	input: expand('aln/{ds}.realn.bam', ds = DATEDSAMPS) 
+
 
 ###############################################################################
 
@@ -107,16 +107,17 @@ rule sort_bam:
 
 rule fastq_to_bam:
 	input: 'symlinks/{ds}_R1.fastq.gz', 'symlinks/{ds}_R2.fastq.gz'
+	#input: 'symlinks/{ds}_R1.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R2.PAIREDtrimmomatictrimmed.fastq.gz'
 	output: 'aln/{ds}.bam'
 	shell: 'bwa mem {REF2} {readWD}{input[0]} {readWD}{input[1]} \
 		-R "@RG\tID:bwa\tPL:illumina\tLB:{wildcards.ds}\tSM:{wildcards.ds[0]}{wildcards.ds[1]}{wildcards.ds[2]}{wildcards.ds[3]}{wildcards.ds[4]}" \
-		 samtools view -Sb - > {output}'
+		 | samtools view -Sb - > {output}'
 		# calling the @RG ID: 'bwa' because this resolves a clash with @PG ID --> I updated this recently to make it more unique for MERGING
 		# Can controls how long the read sample name is by wild cards for tSM, important if want to merge file later and need different library names but same sample names
 
 # rule trim_illumina_Adaptors_fastqs:
 # 	 input: 'symlinks/{ds}_R1.fastq.gz', 'symlinks/{ds}_R2.fastq.gz', 
 # 	 output: 'symlinks/{ds}_R1.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R1.UNPAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R2.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{ds}_R2.UNPAIREDtrimmomatictrimmed.fastq.gz',  
-# 	 shell: 'trimmomatic PE -threads 12 -trimlog symlinks/Relapse/trim_log.txt {input[0]} {input[1]} {output[0]} {output[1]} {output[2]} {output[3]} ILLUMINACLIP:/nas/longleaf/apps/trimmomatic/0.36/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36'
+# 	 shell: 'trimmomatic PE -threads 12 -trimlog symlinks/trim_log.txt {input[0]} {input[1]} {output[0]} {output[1]} {output[2]} {output[3]} ILLUMINACLIP:/nas/longleaf/apps/trimmomatic/0.36/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36'
 #     # Trimmomatic needed if illumina adpators are attached. The TRUE at the end keeps the paired end reads in R2
 #     # Want to align the PAIRED trimmed
