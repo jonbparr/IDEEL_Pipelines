@@ -136,7 +136,7 @@ rule AlignSummaryMetrics:
 ###############################################
 ########   VALIDATE SAM FILE MODULE   #########
 ###############################################
-rule fastqc:
+rule ValidateSamFile:
 	input: expand('aln/{sample}.recal.realn.bam', sample=SAMPLES)
 	output: 'SumSTATsandQC/ValidateBams.tab.txt'
 	shell: 'java -jar {PICARD} ValidateSamFile \
