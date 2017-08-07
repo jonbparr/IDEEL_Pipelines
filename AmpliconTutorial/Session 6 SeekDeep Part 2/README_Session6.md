@@ -1,4 +1,4 @@
 # Amplicon Tutorial for IDEElers
-## Session 5
+## Session 6: SeekDeep Part 2
 
-Here we will explore SeekDeep
+Here we will explore SeekDeep.
