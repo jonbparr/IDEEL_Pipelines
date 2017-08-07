@@ -1,0 +1,605 @@
+Last login: Thu Jul 27 16:49:41 on ttys005
+Identity added: /Users/NFB/.ssh/KD_id_rsa (/Users/NFB/.ssh/KD_id_rsa)
+Identity added: /Users/NFB/.ssh/Bib6_id_rsa (/Users/NFB/.ssh/Bib6_id_rsa)
+Identity added: /Users/NFB/.ssh/git_id_rsa (/Users/NFB/.ssh/git_id_rsa)
+Identity added: /Users/NFB/.ssh/NFB_laptop_id_rsa (/Users/NFB/.ssh/NFB_laptop_id_rsa)
+Identity added: /Users/NFB/.ssh/longleaf_id_rsa (/Users/NFB/.ssh/longleaf_id_rsa)
+[16:49]NFB:~$ logOnBib6
+Welcome to Ubuntu 14.04.5 LTS (GNU/Linux 4.4.0-45-generic x86_64)
+
+ * Documentation:  https://help.ubuntu.com/
+
+  System information as of Thu Jul 27 16:04:27 EDT 2017
+
+  System load:    0.0                 Processes:              1451
+  Usage of /data: 75.6% of 116.86TB   Users logged in:        3
+  Memory usage:   27%                 IP address for docker0: 172.17.0.1
+  Swap usage:     100%
+
+  Graph this data and manage this system at:
+    https://landscape.canonical.com/
+
+0 packages can be updated.
+0 updates are security updates.
+
+New release '16.04.2 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
+
+Your Hardware Enablement Stack (HWE) is supported until April 2019.
+*** System restart required ***
+Last login: Thu Jul 27 16:04:29 2017 from 152.2.169.183
+brazeaun@ummsres25:~$ ls
+Genomes  Projects  R  Sandbox  sourceCodes  Tools
+brazeaun@ummsres25:~$ 
+brazeaun@ummsres25:~$ 
+brazeaun@ummsres25:~$ cd Projects/
+brazeaun@ummsres25:~/Projects$ l;s
+arXives/  ASAPcytB/  CMP_VivaxSamples/  EPHI_DrugRx_Screen/  JP_HRP2_Bams/  MalariaGen_plasmodiversity/  Pf3k_Data/  PfMixtures/  Pipeline_Testing/  PvPf_Kelch_Southeast_Asia_SNPs/  PvRelapses_JTLinCollab/  Vivax_Cross_CQ/
+cs: command not found
+brazeaun@ummsres25:~/Projects$ cd EPHI_DrugRx_Screen/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ ls
+SeekDeepRun  Tutorial
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ cd Tutorial/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial$ ls
+data  EPHI_Simdata_finalReads  extract_200_crt  extract_230_ama1  extract_240_nocrt_noama1  README
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial$ ls EPHI_Simdata_finalReads/
+Pool1_S1_L001_R1.fastq.gz  Pool1_S1_L001_R2.fastq.gz  Pool2_S1_L001_R1.fastq.gz  Pool2_S1_L001_R2.fastq.gz  README
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial$ cd EPHI_Simdata_finalReads/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads$ ls
+Pool1_S1_L001_R1.fastq.gz  Pool1_S1_L001_R2.fastq.gz  Pool2_S1_L001_R1.fastq.gz  Pool2_S1_L001_R2.fastq.gz  README
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads$ zcat Pool2_S1_L001_R2.fastq.gz | head
+@[genome=PfDd2;mipTar=pfcrt-newFor_S0_Sub0_mip0;mipFam=pfcrt-newFor_S0_Sub0_mip0;region=pfcrt;extBarcode=GCGGAGAAGC;ligBarcode=GCAT;libName=GonderPool2014;simCount=143;]_seq.0001_0-2/2
+AGATCGGAAGACGAGTGCGTATGCTGTGAGTTTCGGATGTTACAAAACTATAGTTACCAATTTTGTTTAAAGTTCTTTTAGCAAAAATTGTTTCAATTACACATACACTTAAATAAATAATACTTAAAATATAAATAAAAATATTATCCTTAATCTCTTTAAAAATAAGTTTAAACACATGAGCACATTTACCAAGACTAGGACCTCCACCTAAACGTGATACACTCTTTCCCTACACGA
++
+JJJJJJJJJJJJJJJJJJJJ@>-@6@=,CE@ECCEEHHHDDDIGI//FIII1JIIJJJJGG>JIGIG1G1EIEIJIIJJGIIHH?CG$JFFGGE.IJGIEH.IIJIHIIG@EJII-I5-IGF6II?HGHFI,FGIC@EIIH+/GGHGFHG;AIAIFEFIHHGH91HDA(@+GA7AHHH@GFDHFFH+HC)H3FH@GFF(FH,<+9FH+B;GHFFD;FF7HJJJJJJJJJJJJJJJJJJJJ
+@[genome=PfDd2;mipTar=pfcrt-newFor_S0_Sub0_mip0;mipFam=pfcrt-newFor_S0_Sub0_mip0;region=pfcrt;extBarcode=ATGAAAAGAA;ligBarcode=AGCC;libName=GonderPool2014;simCount=184;]_seq.0001_0-2/2
+AGATCGGAAGACGAGTGCGTGGCTTGTGAGTTTCGGATGTTACAAAACTATAGTTACCAATTTTGTTTAAAGTTCTTTTAGCAAAAATTGTTTCAATTACACATACACTTAAATTAATAATACTTAAAATATAAATAAAAATATTATCGTTAATCTCTTTAAAAATTAGTTTAAACACATCAGCACATTTACCAAGACAAGAACCTCCACCTAAACGTGATACACTCTTTCCCTACACGA
++
+JJJJJJJJJJJJJJJJJJJJ@@@@BCC,E:EEEEEEHHGHGDIGJ/IDJFIHIIBIJIIIJFBIJIGJG1JJFGE>GJFEDJIIGIGGIJJFBJ.BIHB+I.JIHDJJ/DDE>J)HIGIDFIHGIHIE,IEHICGEFFCFGFHHEH>I$)?DHGHFBDGC+)HH@B-FFBH;GFHHBHHB$+FGGA9HFH@FH1F0DFFHHF5D@HCFH@HHBDF0GH/BJJJJJJJJJJJJJJJJJJJJ
+@[genome=PfDd2;mipTar=pfcrt-newFor_S0_Sub0_mip0;mipFam=pfcrt-newFor_S0_Sub0_mip0;region=pfcrt;extBarcode=GCGCGCAGTT;ligBarcode=GCTG;libName=GonderPool2014;simCount=4;]_seq.0001_0-2/2
+AGATCGGAAGACGAGTGCGTCAGCTGTGAGTTTCGGATGTTACAAAACTATAGTTACCAATTTTGTTTAAAGTTCTTTTAGCAAAAATTGTTTCAATTACACATACACTTAAATAAATAATACTTAAAATATAAATAAAAATATTATCCTTAATCTCTTTAAAAATAAGTTTAAACACATGAGCACATTTACCAAGACAAGAACCTCCACCTAAACGTGATACACTCTTTCCCTACACGA
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads$ cd ../..
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ ls
+SeekDeepRun  Tutorial
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ cls
+No command 'cls' found, but there are 18 similar ones
+cls: command not found
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ ls
+SeekDeepRun  Tutorial
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ cd SeekDeepRun/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls
+analysis  EPHI_Sim_idFile.tab.txt  EPHI_Sim_idFile.tab.txt~  EPHI_Sim_SampleNames.tab.txt  EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_targetsToIndex.tab.txt 
+targets	index
+Kelch	Illumina1
+MDR1_US	Illumina1
+MDR1_DS	Illumina1
+dhp	Illumina1
+dhfr	Illumina1
+crt	Illumina1
+ama1	Illumina1
+Kelch	Illumina2
+MDR1_US	Illumina2
+MDR1_DS	Illumina2
+dhp	Illumina2
+dhfr	Illumina2
+crt	Illumina2
+ama1	Illumina2
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls
+analysis  EPHI_Sim_idFile.tab.txt  EPHI_Sim_idFile.tab.txt~  EPHI_Sim_SampleNames.tab.txt  EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ rm -r analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cd ..
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7
+static int bibseq::SeekDeepUtilsRunner::setupTarAmpAnalysis(const bib::progutils::CmdArgs&): There is 1 error.
+EPHI_Sim_SampleNames.tab.txt doesn't exist
+
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ ls
+SeekDeepRun  Tutorial
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen$ cd SeekDeepRun/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls
+EPHI_Sim_idFile.tab.txt  EPHI_Sim_idFile.tab.txt~  EPHI_Sim_SampleNames.tab.txt  EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7
+bibseq::TarAmpAnalysisSetup::TarAmpAnalysisSetup(const bibseq::TarAmpAnalysisSetup::TarAmpPars&): error, if input files have MIDs still, then the sample file"EPHI_Sim_SampleNames.tab.txt" should be by index and not by target
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt 
+#index	Sample	rep1
+Illumina1	AddisPool2012	MID01
+Illumina1	AddisPool2014	MID02
+Illumina1	GonderPool2012	MID03
+Illumina2	GonderPool2014	MID01
+Illumina2	HarargePool2012	MID02
+Illumina2	HarargePool2014	MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt | column -t 
+#index     Sample           rep1
+Illumina1  AddisPool2012    MID01
+Illumina1  AddisPool2014    MID02
+Illumina1  GonderPool2012   MID03
+Illumina2  GonderPool2014   MID01
+Illumina2  HarargePool2012  MID02
+Illumina2  HarargePool2014  MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt | column -t | cut -f1
+#index     Sample           rep1
+Illumina1  AddisPool2012    MID01
+Illumina1  AddisPool2014    MID02
+Illumina1  GonderPool2012   MID03
+Illumina2  GonderPool2014   MID01
+Illumina2  HarargePool2012  MID02
+Illumina2  HarargePool2014  MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt | column -t | cut -f 1
+#index     Sample           rep1
+Illumina1  AddisPool2012    MID01
+Illumina1  AddisPool2014    MID02
+Illumina1  GonderPool2012   MID03
+Illumina2  GonderPool2014   MID01
+Illumina2  HarargePool2012  MID02
+Illumina2  HarargePool2014  MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt 
+#index	Sample	rep1
+Illumina1	AddisPool2012	MID01
+Illumina1	AddisPool2014	MID02
+Illumina1	GonderPool2012	MID03
+Illumina2	GonderPool2014	MID01
+Illumina2	HarargePool2012	MID02
+Illumina2	HarargePool2014	MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ la
+analysis  EPHI_Sim_idFile.tab.txt  EPHI_Sim_idFile.tab.txt~  EPHI_Sim_SampleNames.tab.txt  EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_idFile.tab.txt
+target	forwardPrimer	reversePrimer
+Kelch	 AGGCTTTATTTGAAACTGAGGTGT	 TCTGGTACACCATTTAGAAATTGCC
+MDR1_US	 ACAAAAAGAGTACCGCTGAAT	 AAACGCAAGTAATACATAAAGTC
+MDR1_DS	 TTCAAACCAATCTGGATCTGC	 TTCTCTGTTTTTGTCCACCTGA
+dhp	 TGAAATGATAAATGAAGGTGCTAGTGT	 GTTGTGTATTTATTACAACATTTTGATCATTC
+dhfr	 TGAGGTTTTTAATAACTACACATTTAGAGGTCT	 TCGCTAACAGAAATAATTTGATACTCAT
+crt	 GGAAATGGCTCACGTTTAGG	 TGTGAGTTTCGGATGTTACAAAA
+ama1	 CCATCAGGGAAATGTCCAGT	 TTTCCTGCATGTCTTGAACA
+id	barcode	
+MID01	ACGAGTGCGT
+MID02	ACGCTCGACA
+MID03	AGACGCACTC
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt 
+#index	Sample	rep1
+Illumina1	AddisPool2012	MID01
+Illumina1	AddisPool2014	MID02
+Illumina1	GonderPool2012	MID03
+Illumina2	GonderPool2014	MID01
+Illumina2	HarargePool2012	MID02
+Illumina2	HarargePool2014	MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --
+--byIndex                  --extraProcessClusterCmds  --groupMeta                --inputFilePat             --noQualTrim               --r1Trim                   --samples                  --verbose                  
+--debug                    --extraQlusterCmds         --idFile                   --lenCutOffs               --numThreads               --r2Trim                   --targetsToIndex           
+--extraExtractorCmds       --getFlags                 --inputDir                 --maxOverlap               --outDir                   --refSeqsDir               --technology               
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex 
+Need to have --targetsToIndex see SeekDeep setuptarampanalysis --help for more details
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls rlt
+ls: cannot access rlt: No such file or directory
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls -rlt
+total 20
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  507 Jul 26 21:37 EPHI_Sim_idFile.tab.txt~
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  205 Jul 26 21:45 EPHI_Sim_SampleNames.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  234 Jul 26 21:47 EPHI_Sim_targetsToIndex.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  505 Jul 26 21:49 EPHI_Sim_idFile.tab.txt
+drwxr-xr-x 6 brazeaun UNIXLDAPUsers 4096 Jul 27 16:54 analysis
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_targetsToIndex.tab.txt 
+targets	index
+Kelch	Illumina1
+MDR1_US	Illumina1
+MDR1_DS	Illumina1
+dhp	Illumina1
+dhfr	Illumina1
+crt	Illumina1
+ama1	Illumina1
+Kelch	Illumina2
+MDR1_US	Illumina2
+MDR1_DS	Illumina2
+dhp	Illumina2
+dhfr	Illumina2
+crt	Illumina2
+ama1	Illumina2
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+static int bibseq::SeekDeepUtilsRunner::setupTarAmpAnalysis(const bib::progutils::CmdArgs&): There is 1 error.
+bool bibseq::TarAmpAnalysisSetup::TarAmpPars::checkForOutDir(bibseq::VecStr&) const: error, out directory "analysis" already exists, must remove by hand will not overwrite
+
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ rm -r analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+void bibseq::TarAmpAnalysisSetup::addIndexToTargetsNames(const boost::filesystem::path&): error already have targets for index: Illumina1
+Check to see if there are repeat values in "EPHI_Sim_targetsToIndex.tab.txt"
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt --getFlags 
+                   Required Options
+                 --idFile	ID file containing primer and possible additional MIDs; required; default=; (boost::filesystem::path)
+               --inputDir	Input Directory of raw data files; required; default=; (boost::filesystem::path)
+                 --outDir	Directory to setup for analysis; required; default=; (boost::filesystem::path)
+                --samples	A file containing the samples names, columns should go target,sample,pcr1,(optional)pcr2 etc; required; default=; (boost::filesystem::path)
+         --targetsToIndex	A tsv file with two columns named targets and index where targets in a comma separated value with the targets for the index in index; required; default=; (boost::filesystem::path)
+                   Optional Options
+                --byIndex	If the input sample names are by index and not targets; default=false; (bool)
+                  --debug	Debug; default=false; (bool)
+     --extraExtractorCmds	Extra extractor cmds to add to the defaults; default=; (std::string)
+--extraProcessClusterCmds	Extra process clusters cmds to add to the defaults; default=; (std::string)
+       --extraQlusterCmds	Extra qluster cmds to add to the defaults; default=; (std::string)
+              --groupMeta	Group Metadata; default=; (boost::filesystem::path)
+           --inputFilePat	The input file pattern in the input directory to work on; default=.*.fastq.gz; (std::string)
+             --lenCutOffs	A file with 3 columns, target,minlen,maxlen to supply length cut off specifically for each target; default=; (boost::filesystem::path)
+             --maxOverlap	Max overlap allowed in stitcher; default=250; (uint32_t)
+             --noQualTrim	No Quality Trim; default=false; (bool)
+             --numThreads	Number of CPUs to use; default=1; (uint32_t)
+                 --r1Trim	Trim R1 Reads to this length; default=4294967295; (uint32_t)
+                 --r2Trim	Trim R2 Reads to this length; default=4294967295; (uint32_t)
+             --refSeqsDir	A directory of fasta files where each file is named with the input target names; default=; (boost::filesystem::path)
+             --technology	Sequencing Technology (should be 454,IonTorrent, or Illumina; default=illumina; (std::string)
+             --verbose,-v	Verbose; default=false; (bool)
+                     Help Options
+               --getFlags	Print flags
+                -h,--help	Print a more detail help message if available
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls -rlt
+total 20
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  507 Jul 26 21:37 EPHI_Sim_idFile.tab.txt~
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  205 Jul 26 21:45 EPHI_Sim_SampleNames.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  234 Jul 26 21:47 EPHI_Sim_targetsToIndex.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  505 Jul 26 21:49 EPHI_Sim_idFile.tab.txt
+drwxr-xr-x 6 brazeaun UNIXLDAPUsers 4096 Jul 27 17:03 analysis
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim
+vim        vim.basic  vimdiff    vimdot     vim.tiny   vimtutor   
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls -rlt
+total 20
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  507 Jul 26 21:37 EPHI_Sim_idFile.tab.txt~
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  205 Jul 26 21:45 EPHI_Sim_SampleNames.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  505 Jul 26 21:49 EPHI_Sim_idFile.tab.txt
+drwxr-xr-x 6 brazeaun UNIXLDAPUsers 4096 Jul 27 17:03 analysis
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  114 Jul 27 17:05 EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+static int bibseq::SeekDeepUtilsRunner::setupTarAmpAnalysis(const bib::progutils::CmdArgs&): There is 1 error.
+bool bibseq::TarAmpAnalysisSetup::TarAmpPars::checkForOutDir(bibseq::VecStr&) const: error, out directory "analysis" already exists, must remove by hand will not overwrite
+
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ rm -r analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+bibseq::TarAmpAnalysisSetup::TarAmpAnalysisSetup(const bibseq::TarAmpAnalysisSetup::TarAmpPars&): error, target names shouldn't have underscores in them (this makes downstream patern matching and such easier) replace with -
+The following targets should be renamed
+MDR1_DS, MDR1_US
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_targetsToIndex.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ rm -r analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+static int bibseq::SeekDeepUtilsRunner::setupTarAmpAnalysis(const bib::progutils::CmdArgs&): error, missing the following targets from the id file "EPHI_Sim_idFile.tab.txt"
+Targets: MDR1-DS, MDR1-US
+AvailableTargets: Kelch, MDR1_DS, MDR1_US, ama1, crt, dhfr, dhp
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_
+EPHI_Sim_idFile.tab.txt          EPHI_Sim_idFile.tab.txt~         EPHI_Sim_SampleNames.tab.txt     EPHI_Sim_targetsToIndex.tab.txt  
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_idFile.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ rm -r analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+ERRORS FOUND!!
+Read Warnings in analysis/WARNINGS_PLEASE_READ.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat analysis/WARNINGS_PLEASE_READ.txt 
+The following files were found but didn't match any input sample names in "EPHI_Sim_SampleNames.tab.txt"
+	Possible Sample Name: Pool2
+		/data/home/brazeaun/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads/Pool2_S1_L001_R1.fastq.gz
+		/data/home/brazeaun/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads/Pool2_S1_L001_R2.fastq.gz
+	Possible Sample Name: Pool1
+		/data/home/brazeaun/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads/Pool1_S1_L001_R1.fastq.gz
+		/data/home/brazeaun/Projects/EPHI_DrugRx_Screen/Tutorial/EPHI_Simdata_finalReads/Pool1_S1_L001_R2.fastq.gz
+The following input files were not found
+	Sample: Illumina2
+	Sample: Illumina1
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_idFile.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_
+EPHI_Sim_idFile.tab.txt          EPHI_Sim_idFile.tab.txt~         EPHI_Sim_SampleNames.tab.txt     EPHI_Sim_targetsToIndex.tab.txt  
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_targetsToIndex.tab.txt 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_idFile.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ vim EPHI_Sim_targetsToIndex.tab.txt 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ sed 's/Illumina/Pool/g' EPHI_Sim_SampleNames.tab.txt 
+#index	Sample	rep1
+Pool1	AddisPool2012	MID01
+Pool1	AddisPool2014	MID02
+Pool1	GonderPool2012	MID03
+Pool2	GonderPool2014	MID01
+Pool2	HarargePool2012	MID02
+Pool2	HarargePool2014	MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ sed -i  's/Illumina/Pool/g' EPHI_Sim_SampleNames.tab.txt 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls -rlt
+total 20
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  507 Jul 26 21:37 EPHI_Sim_idFile.tab.txt~
+drwxr-xr-x 7 brazeaun UNIXLDAPUsers 4096 Jul 27 17:06 analysis
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  505 Jul 27 17:06 EPHI_Sim_idFile.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  106 Jul 27 17:07 EPHI_Sim_targetsToIndex.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  181 Jul 27 17:08 EPHI_Sim_SampleNames.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cat EPHI_Sim_SampleNames.tab.txt 
+#index	Sample	rep1
+Pool1	AddisPool2012	MID01
+Pool1	AddisPool2014	MID02
+Pool1	GonderPool2012	MID03
+Pool2	GonderPool2014	MID01
+Pool2	HarargePool2012	MID02
+Pool2	HarargePool2014	MID03
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls -rlt
+total 20
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  507 Jul 26 21:37 EPHI_Sim_idFile.tab.txt~
+drwxr-xr-x 7 brazeaun UNIXLDAPUsers 4096 Jul 27 17:06 analysis
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  505 Jul 27 17:06 EPHI_Sim_idFile.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  106 Jul 27 17:07 EPHI_Sim_targetsToIndex.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  181 Jul 27 17:08 EPHI_Sim_SampleNames.tab.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ rm -r analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ SeekDeep setupTarAmpAnalysis --technology illumina --inputDir ../Tutorial/EPHI_Simdata_finalReads/ --inputFilePat ".*.fastq.gz" --samples EPHI_Sim_SampleNames.tab.txt --idFile EPHI_Sim_idFile.tab.txt --outDir analysis "--extraExtractorCmds=--checkComplement --qualWindow 50,5,18" --numThreads 7 --byIndex --targetsToIndex EPHI_Sim_targetsToIndex.tab.txt 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ ls -rlt
+total 20
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  507 Jul 26 21:37 EPHI_Sim_idFile.tab.txt~
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  505 Jul 27 17:06 EPHI_Sim_idFile.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  106 Jul 27 17:07 EPHI_Sim_targetsToIndex.tab.txt
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  181 Jul 27 17:08 EPHI_Sim_SampleNames.tab.txt
+drwxr-xr-x 7 brazeaun UNIXLDAPUsers 4096 Jul 27 17:08 analysis
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cdL
+No command 'cdL' found, did you mean:
+ Command 'cdi' from package 'cdo' (universe)
+ Command 'cdv' from package 'codeville' (universe)
+ Command 'cdb' from package 'tinycdb' (main)
+ Command 'cdp' from package 'irpas' (multiverse)
+ Command 'cd5' from package 'cd5' (universe)
+ Command 'cdo' from package 'cdo' (universe)
+ Command 'cde' from package 'cde' (universe)
+ Command 'cdw' from package 'cdw' (universe)
+cdL: command not found
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun$ cd analysis/
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ ls
+extractorCmds.txt  logs                       Pool1.histogram            Pool1_R1.fastq             Pool2.hist                 Pool2.notCombined_2.fastq  popClustering           reports                                                   serverConfigs
+genConfigCmds.txt  Pool1.extendedFrags.fastq  Pool1.notCombined_1.fastq  Pool1_R2.fastq             Pool2.histogram            Pool2_R1.fastq             processClusterCmds.txt  runAnalysis.sh                                            startServerCmd.sh
+info               Pool1.hist                 Pool1.notCombined_2.fastq  Pool2.extendedFrags.fastq  Pool2.notCombined_1.fastq  Pool2_R2.fastq             qlusterCmds.txt         runLog_SeekDeep-setuptarampanalysis_2017-07-27_17.08.txt
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ ll
+total 111504
+drwxr-xr-x 7 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 ./
+drwxr-xr-x 3 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 ../
+-rw-rw-r-- 1 brazeaun UNIXLDAPUsers      500 Jul 27 17:08 extractorCmds.txt
+-rw-rw-r-- 1 brazeaun UNIXLDAPUsers      820 Jul 27 17:08 genConfigCmds.txt
+drwxr-xr-x 3 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 info/
+drwxr-xr-x 2 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 logs/
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  2990380 Jul 27 17:08 Pool1.extendedFrags.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers      105 Jul 27 17:08 Pool1.hist
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers     1240 Jul 27 17:08 Pool1.histogram
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 12235740 Jul 27 17:08 Pool1.notCombined_1.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 12235740 Jul 27 17:08 Pool1.notCombined_2.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 14755746 Jul 27 17:08 Pool1_R1.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 14755746 Jul 27 17:08 Pool1_R2.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers  2989423 Jul 27 17:08 Pool2.extendedFrags.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers      109 Jul 27 17:08 Pool2.hist
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers     1241 Jul 27 17:08 Pool2.histogram
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 12265818 Jul 27 17:08 Pool2.notCombined_1.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 12265818 Jul 27 17:08 Pool2.notCombined_2.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 14788151 Jul 27 17:08 Pool2_R1.fastq
+-rw-r--r-- 1 brazeaun UNIXLDAPUsers 14788151 Jul 27 17:08 Pool2_R2.fastq
+drwxr-xr-x 9 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 popClustering/
+-rw-rw-r-- 1 brazeaun UNIXLDAPUsers     1461 Jul 27 17:08 processClusterCmds.txt
+-rw-rw-r-- 1 brazeaun UNIXLDAPUsers    15186 Jul 27 17:08 qlusterCmds.txt
+drwxr-xr-x 2 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 reports/
+-rwxrwxr-- 1 brazeaun UNIXLDAPUsers      555 Jul 27 17:08 runAnalysis.sh*
+-rw-rw-r-- 1 brazeaun UNIXLDAPUsers      462 Jul 27 17:08 runLog_SeekDeep-setuptarampanalysis_2017-07-27_17.08.txt
+drwxr-xr-x 2 brazeaun UNIXLDAPUsers     4096 Jul 27 17:08 serverConfigs/
+-rwxrwxr-- 1 brazeaun UNIXLDAPUsers      596 Jul 27 17:08 startServerCmd.sh*
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep 
+Version 2.5.0
+Programs
+Use SeekDeep [PROGRAM] --help to see more details about each program
+Commands are not case sensitive
+SeekDeep
+1) extractor
+2) makeSampleDirectories
+3) processClusters
+4) qluster
+SeekDeepServer
+1) genProjectConfig
+2) popClusteringViewer
+SeekDeepUtils
+1) dryRunQaulityFiltering
+2) replaceUnderscores
+3) runMultipleCommands
+4) setupTarAmpAnalysis
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractorPairedEnd
+extractor 
+Extracts sequences from fasta/fastq/sff files and some pre-filtering 
+Commands, order not necessary and case insensitive 
+Required commands 
+Input can be fasta/fastq/sff 
+Input options: 
+1a) --fasta [option]: Name of the fasta file 
+1b) --fastq [option]: Name of the fastq file 
+1c) --sff [option]: Name of the sff text file 
+1c) --sffBin [option]: Name of the sff binary file 
+2) --id [option]: Full name of the id file with primers and Ids info 
+The id file should be tab delimited and contains the primer and reverse primer 
+    and MIDs if the data is multiplex, example below 
+	gene	forwardPrimer	reversePrimer
+	PFMSP1	AACTAGAAGCTTTAGAAGATGCA	ACATATGATTGGTTAAATCAAAG
+	PFMSP2	AGATGCAGCTTTAACTAGAAGAA	TTAAAACATATGATTGGTCAAAG
+	id	barcode
+	MID01	ACGAGTGCGT
+	MID02	ACGCTCGACA
+Optional commands 
+--dout [option]: Name of an output directory, will default to the name of the 
+    input file plus the date if none given 
+--multiplex : Whether the id file is multiplex with multiple MIDs, the program 
+    will assume only primers are given if this is not switched on 
+--checkComplement : Check the complement of the sequences for the barcodes as 
+    well 
+--rename : Rename the sequence to the associated primers and mids mids 
+Quality filtering options 
+--minLen [option]: The minimum length for the read to be extracted including 
+    primers, defaults to 20% less than the median input length 
+--maxLen [option]: The maximum length for the read to be extracted including 
+    primers, defaults to 20% more than the median input length 
+--qualWindow [option]: Quality window checking options, given separated by 
+    commas and in the order of windowSize, windowStep, and windowMinimumThres, 
+    ex. 50,5,20 (default) 
+--qualCheck Qual Check Level; default30 
+--qualCheckCutOff Cut Off for fraction of bases above qual check of 30; 
+    default=0.75 
+--numberOfNs [option]: the number of N's(the symbol for unknown base) to be 
+    allowed in sequence, defaults to 0 
+--samllFragmentCutOff [option]: the size cutoff for a sequence to be considered 
+    simply a fragment, defaults to 50 
+Options for looking for primers 
+--noReverse: if you don't want to look for the reverse primer as well as the 
+    forward primer, will default to looking for both 
+--rPrimerCoverage [option] : fraction of the reverse primer that needs to be 
+    present, defaults to 0.5 so at least half of the primer needs to be present 
+--rPrimerMismatches [option] : Number of mismatches to allow in reverse primer 
+    , defaults to 4 
+--rUpper: set this to make the reverse primer into upper case, the default is 
+    to make it and everything that follows it lower case 
+--noForwardPrimer: Don't look for the forward primer, this means only one 
+    primer pair can be put in the id file 
+--fPrimerCoverage [option] : fraction of the forward primer that needs to be 
+    present, defaults to 1 
+--fPrimerMismatches [option] : Number of mismatches to allow in forward primer 
+    , defaults to 2 
+--fUpper: set this to make the forward primer into upper case, the default is 
+    to make everything up to and including to it lower case 
+Options for screening for possible contamination 
+--contamination : Where to screen for possible contamination, a comparison 
+    sequence needs to be supplied if this is turned on, this option is 
+    supported for when using multiple primer pairs yet 
+--compareSeq [option]: A comparison sequence to which the reads are compared 
+    and and if they are dissimilar enough they will be removed as contamination 
+--contaminationKLen [option]: Contamination Kmer Length, defaults to 7 
+--kmerCutOff [option]: Kmer cut off for contamination check, defaults to 0.2 
+Options for when extracting with multiple targets 
+---multipleTargets : A flag to indicate you are extracting on multiple targets 
+--lenCutOffs [option]: a filename containing specific cut offs for each target 
+    need three columns, target, minlen,and maxlen. If target is not found here 
+    length cut offs will default to options associated with --minLen and 
+    --maxLen 
+--compareSeq [option]: When the --multipleTargets flag is on this can be a 
+    fasta or fastq file containing a different seq for each target 
+examples: 
+	SeekDeep extractor --fasta reads.fasta --id idFile.tab.txt --dout outPutDir 
+	SeekDeep extractor --fastq reads.fastq --id idFile.tab.txt
+Output Files: 
+extractionProfile.tab.txt: This breaks down the filtering per final extraction 
+    sequence file 
+extractionStats.tab.txt: This has info how the whole extraction went 
+seqFiles: Extracted files will be named [PrimerName][MIDNAME].fastq, if not 
+    multiplexed then just [PrimerName][MIDNAME].fastq 
+filteredOff: Reads that failed filtering will be found in this directory along 
+    with reads that don't match any supplied barcodes and/or primers 
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractorPairedEnd --getFlags 
+                        Required Options
+                         --bam	Input sequence filename, bam file; required; default=; (boost::filesystem::path)
+                       --fasta	Input sequence filename, fasta text file; required; default=; (boost::filesystem::path)
+                     --fastagz	Input sequence filename, fasta gzipped file; required; default=; (boost::filesystem::path)
+                       --fastq	Input sequence filename, fastq text file; required; default=; (boost::filesystem::path)
+                      --fastq1	Input sequence filename, fastq first mate text file; required; default=; (boost::filesystem::path)
+                    --fastq1gz	Input sequence filename, fastq first mate gzipped file; required; default=; (boost::filesystem::path)
+                      --fastq2	Input sequence filename, fastq second mate text file; required; default=; (boost::filesystem::path)
+                    --fastq2gz	Input sequence filename, fastq second mate gzipped file; required; default=; (boost::filesystem::path)
+                     --fastqgz	Input sequence filename, fastq gzipped file; required; default=; (boost::filesystem::path)
+                         --sff	Input sequence filename, sff text file; required; default=; (boost::filesystem::path)
+                      --sffBin	Input sequence filename, sff binary file; required; default=; (boost::filesystem::path)
+                        Optional Options
+                         --HMP	HMP; default=false; (bool)
+                  --alnInfoDir	alnInfoDirName; default=; (std::string)
+                  --appendFile	Append to file; default=false; (bool)
+             --barcodeBothEnds	Look for Barcodes in Both Primers; default=false; (bool)
+               --barcodeErrors	Errors Allowed in Barcode; default=0; (uint32_t)
+             --checkComplement	Check the Complement of the Seqs As Well; default=false; (bool)
+            --checkShortenBars	Check for shorten Barcodes if the first base may have been trimmed off; default=false; (bool)
+                  --compareSeq	Comparison Sequence For Contamination ; default=; (std::string)
+               --contamination	Screening For Contamination; default=false; (bool)
+           --contaminationKLen	Contamination Kmer Length comparison; default=7; (uint32_t)
+--contaminationMutlipleCompare	Compare to all the sequences within the compare seq file if a file is given; default=false; (bool)
+                       --debug	Debug; default=false; (bool)
+                        --dout	Output Directory Name; default=./; (std::string)
+                   --fCoverage	Amount of Forward Primer to find; default=1; (double)
+            --fNumOfMismatches	Number of Mismatches to allow in Forward Primer; default=2; (uint32_t)
+              --fOneBaseIndels	Number Of One base indels to allow in forward primer; default=2; (double)
+              --fTwoBaseIndels	Number Of Two base indels to allow in forward primer; default=1; (double)
+                      --fUpper	Leave reverse primer upper case; default=false; (bool)
+    --filterOffSmallReadCounts	Whether to Filter Off Extraction of Small size (size set by --smallExtractReadCount) ; default=false; (bool)
+                         --gap	Gap Penalties for Middle Gap; default=5,1; (std::string)
+                      --gapAll	Gap Penalties for All (middle and end gaps); default=5,1; (std::string)
+                     --gapLeft	Gap Penalties for Left End Gap; default=0,0; (std::string)
+                    --gapRight	Gap Penalties for Right End Gap; default=0,0; (std::string)
+                          --id	The name of the ID file; default=; (std::string)
+                 --idFileDelim	Id File Delim; default=whitespace; (std::string)
+                    --illumina	If input reads are from Illumina; default=false; (bool)
+                  --kmerCutOff	Kmer cut off for contamination check; default=0.2; (double)
+                  --lenCutOffs	Length cut offs for when extracting multiple targets; default=; (std::string)
+                       --lower	How to handle Lower Case Bases; default=nothing; (std::string)
+                      --maxlen	Maximum read length; default=4294967295; (uint32_t)
+              --midEndsRevComp	Barcodes on both ends are in the reverse complement of each other; default=false; (bool)
+                      --minlen	Minimum read length; default=4294967295; (uint32_t)
+               --mothurExtract	Extract Data Files for mothur analysis; default=false; (bool)
+             --multipleTargets	Id file contains multiple targets; default=false; (bool)
+                   --multiplex	Indicates that the Reads are multiplex barcoded; default=false; (bool)
+             --noForwardPrimer	No Forward Primer Required; default=false; (bool)
+                   --noReverse	Don't look for reverse Primer; default=false; (bool)
+                  --numberofns	Number Of Ns Cut Off; default=1; (uint32_t)
+                         --out	Out Filename; default=out; (boost::filesystem::path)
+               --outAlnInfoDir	alnInfoDirName; default=; (std::string)
+                   --overWrite	Over Write Existing Files; default=false; (bool)
+                --overWriteDir	If the directory already exists over write it; default=false; (bool)
+                   --processed	Processed, Input Sequence Name has a suffix that contains abundance info; default=false; (bool)
+                        --pyro	Do Pyro extract for files necessary for AmpliconNoise; default=false; (bool)
+                   --qualCheck	Qual Check Level; default=30; (uint32_t)
+             --qualCheckCutOff	Cut Off for fraction of bases above qual check of 30; default=0.75; (double)
+                  --qualWindow	Sliding Quality Window, goes WindowSize,WindowStep,Thresdhold; default=; (std::string)
+              --qualWindowTrim	Trim To Qual Window; default=false; (bool)
+            --rNumOfMismatches	Number of Mismatches to allow in Reverse Primer; default=4; (uint32_t)
+              --rOneBaseIndels	Number Of One base indels to allow in reverse primer; default=2; (double)
+             --rPrimerCoverage	Amount Of Reverse Primer Required; default=0.5; (double)
+              --rTwoBaseIndels	Number Of Two base indels to allow in reverse primer; default=1; (double)
+                      --rUpper	Leave reverse primer upper case; default=false; (bool)
+                  --removeGaps	Remove Gaps from Input Sequences; default=false; (bool)
+                      --rename	Rename With Barcode Names; default=false; (bool)
+                  --sampleName	A name to append to the output files; default=; (std::string)
+       --smallExtractReadCount	Filter Off Extraction of This Size or Smaller; default=5; (uint32_t)
+         --smallFragmentCutOff	Small Fragment Cut Off Size; default=50; (uint32_t)
+                  --trimAtQual	Trim Reads at first occurrence of quality score; default=2; (uint32_t)
+            --trimAtWhiteSpace	Remove everything after first whitespace character in input sequence name; default=false; (bool)
+                    --trimTcag	trim TCAG(454 tag) if it is present ; default=false; (bool)
+               --variableStart	variableStart; default=0; (uint32_t)
+                  --verbose,-v	Verbose; default=false; (bool)
+                          Help Options
+                    --getFlags	Print flags
+                     -h,--help	Print a more detail help message if available
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ cat extractorCmds.txt 
+SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq Pool2.extendedFrags.fastq --illumina  --id info/ids/Kelch_MDR1-DS_MDR1-US_ama1_crt_dhfr_dhp.id.txt --multiplex  --trimAtQual 2 --multipleTargets --checkComplement --qualWindow 50,5,18
+SeekDeep extractor --dout Pool1_extraction --overWriteDir --fastq Pool1.extendedFrags.fastq --illumina  --id info/ids/Kelch_MDR1-DS_MDR1-US_ama1_crt_dhfr_dhp.id.txt --multiplex  --trimAtQual 2 --multipleTargets --checkComplement --qualWindow 50,5,18
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq
+--fastq     --fastq1    --fastq1gz  --fastq2    --fastq2gz  --fastqgz   
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq1gz ../
+analysis/                        EPHI_Sim_idFile.tab.txt          EPHI_Sim_idFile.tab.txt~         EPHI_Sim_SampleNames.tab.txt     EPHI_Sim_targetsToIndex.tab.txt  
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq1gz ../../
+._.DS_Store  .DS_Store    SeekDeepRun/ Tutorial/    
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq1gz ../../Tutorial/
+data/                     EPHI_Simdata_finalReads/  extract_200_crt/          extract_230_ama1/         extract_240_nocrt_noama1/ README                    
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq1gz ../../Tutorial/EPHI_Simdata_finalReads/
+Pool1_S1_L001_R1.fastq.gz  Pool1_S1_L001_R2.fastq.gz  Pool2_S1_L001_R1.fastq.gz  Pool2_S1_L001_R2.fastq.gz  README                     
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq1gz ../../Tutorial/EPHI_Simdata_finalReads/Pool2_S1_L001_R1.fastq.gz --fastq2gz ../../Tutorial/EPHI_Simdata_finalReads/Pool2_S1_L001_R2.fastq.gz  --illumina  --id info/
+ids/                    indexToTargets.tab.txt  sampNames.tab.txt       
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ SeekDeep extractor --dout Pool2_extraction --overWriteDir --fastq1gz ../../Tutorial/EPHI_Simdata_finalReads/Pool2_S1_L001_R1.fastq.gz --fastq2gz ../../Tutorial/EPHI_Simdata_finalReads/Pool2_S1_L001_R2.fastq.gz  --illumina  --id info/ids/Kelch_MDR1-DS_MDR1-US_ama1_crt_dhfr_dhp.id.txt --multiplex --trimAtQual 2 --multipleTargets --verbose 
+Quality Check: 30
+Quality Check Cut Off: 0.75
+Q30>0.75
+Reading in reads:
+Extracting on MIDs
+Error in seqInput, readerFunc_ not set
+
+brazeaun@ummsres25:~/Projects/EPHI_DrugRx_Screen/SeekDeepRun/analysis$ 
