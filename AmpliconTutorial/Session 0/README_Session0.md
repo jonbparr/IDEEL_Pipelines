@@ -5,6 +5,7 @@ This session/markdown file is meant to provide an overview of molecular work com
   
 -----
 ### Resources 
+1. Powerpoint for EPHI **(distributed to relevant parties)**.
 
 ### Tutorial Resources 
 1. Codecademy tutorials for basic/background [coding](www.codecademy.com/)
