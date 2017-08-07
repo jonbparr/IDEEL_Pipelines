@@ -1,5 +1,5 @@
 # Amplicon Tutorial for IDEElers
-## Session 3
+## Session 3: Alignments
 
 Here we will explore basic alignment strategies.
 
@@ -12,3 +12,4 @@ Here we will explore basic alignment strategies.
 ### Exercises
 
 
+Simulate Fasta and align it to a referent genome following the Rmarkdown file `ToyDataGenerator.Rmd`. Make sure to change the probability of the A,C,T,G calls and see how it affects the fasta file. Open the fasta file with a program like `Mega` or `AliView`. Paste several fasta files together and perform multiple pairwise alignment using `Muscle` or `CLUSTALW` (preloaded in the previously mentioned programs or in the R package `Ape`. 

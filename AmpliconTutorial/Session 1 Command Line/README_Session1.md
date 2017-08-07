@@ -1,5 +1,5 @@
 # Amplicon Tutorial for IDEElers
-## Session 1
+## Session 1: Command Line
 
 Here we will explore resources to learn basic the command line. Note, this will focus solely on linux operating systems (and not windows). 
 

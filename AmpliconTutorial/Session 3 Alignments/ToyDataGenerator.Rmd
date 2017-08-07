@@ -1,0 +1,135 @@
+---
+title: "Generating Toy Data"
+output: html_document
+---
+
+```{r setup, include=T, echo=F}
+knitr::opts_chunk$set(echo = TRUE)
+
+#####################################################
+#################      Imports      #################
+#####################################################
+
+#Data Wrangling
+library(tidyverse)
+library(data.table)  # faster fread() and better weekdays()
+
+#plotting
+library(RColorBrewer)
+
+#Genomics
+library(vcfR)
+library(Biostrings)
+library(seqinr)
+
+#Sys.getenv()
+#Sys.setenv()
+
+newPath = Sys.getenv("PATH")
+newPath = paste("/Users/nbrazeau/Desktop/test/", newPath,sep = "")
+Sys.setenv(PATH=newPath)
+
+
+```
+
+**Make sure to specify your output directory. This will write ~2 GB to your local directory. Make sure that the folder you specify exists.** **_Most importanlty make sure you have a directory that exists for the path you specify as the OUTPUTDIRECTORY (example data has: `/Users/nbrazeau/Desktop/ToyData/`). This will be the local path you want to write to._**
+```{r Set_OutputDir}
+
+#####################################################
+######   Specifying Output Directory      ###########
+#####################################################
+outputdirectory="/Users/nbrazeau/Desktop/ToyData/"
+# THIS FOLDER MUST EXIST
+#setwd(outputdirectory)
+Sys.setenv(OUTPUTDIRECTORY = "/Users/nbrazeau/Desktop/ToyData/") # can now do $OUTPUTDIRECTORY
+
+```
+
+
+# Generating Toy Data
+To generate a simulated fasta file and then simulate a fastq using the ART simulator, run the following commands. After we have a fastq, we can run the normal step to analyze a genetic file/sequence. 
+
+## Generating Fasta Sequence
+```{r Fasta generation, echo=F, warning=F, include=T}
+set.seed(444)
+paste("Let's generate a fasta file that is 80% AT like P. falciparum")
+dnaprob <- c(0.4, 0.4, 0.2, 0.2)
+dna <- c("A", "T", "C", "G")
+pfseq <- sample(x = dna, size = 1000, prob =  dnaprob, replace = T)
+pfseq <- paste(pfseq, collapse = "")
+names(pfseq) <- c("pfmockchr1")
+write.fasta(pfseq, as.string = F, names=names(pfseq), file.out = paste0(outputdirectory, "RefmockPf.fa"))
+
+### MAKE fasta to simulate with a SNP
+paste("Now that we a reference sequence that we want to align to, let's make a mutation file that has a SNP that we can find.")
+
+pfseqmut <- s2c(pfseq)
+pfseqmut[444] <- "T" # have mutated pos 444 C -> T
+pfseqmut <- paste(pfseqmut, collapse = "")
+names(pfseqmut) <- c("pfmockchr1")
+write.fasta(pfseqmut, as.string = F, names=names(pfseqmut), file.out = paste0(outputdirectory, "MutmockPf.fa"))
+
+
+
+```
+
+## Running the Illumina Sequencer Simulation
+Going to do mate-paired illumina sequencing for an amplicon. 
+**Note, you are going to have to change your directories to match the outputdir.**
+```{bash Illumina Sequencer Simulation, echo=F, warning=F, include=T}
+
+#/usr/local/Cellar/art/20160605_1/bin/art_illumina -ss MSv3 -p -l 250 -f 500000 -m 600 -s 100 -i /Users/nbrazeau/Desktop/ToyData/MutmockPf.fa -o /Users/nbrazeau/Desktop/ToyData/MutmockPf
+#Simulating amplicon, so should have extreme depth
+
+/usr/local/Cellar/art/20160605_1/bin/art_illumina -ss MSv3 -p -l 250 -f 500000 -m 600 -s 100 -i $OUTPUTDIRECTORY/MutmockPf.fa -o $OUTPUTDIRECTORY/MutmockPf
+
+#Mate-pair reads
+#art_illumina [options] -i <INPUT_SEQ_FILE> -l <READ_LEN> -f <FOLD_COVERAGE> -o <OUTPUT_FILE_PREFIX> -m #<MEAN_FRAG_LEN> -s <STD_DE>
+#Example:
+#  art_illumina -mp -sam -i seq_reference.fa -l 50 -f 20 -m 2050 -s 50 -o d./outdir/dat_paired_end
+
+```
+
+## Running flash and making a stitched fq 
+```{bash Running Flash, echo=F, warning=F, include=T}
+
+Flash --max-overlap 250 -z $OUTPUTDIRECTORY/MutmockPf1.fq $OUTPUTDIRECTORY/MutmockPf2.fq -d $OUTPUTDIRECTORY/ --output-prefix MutmockPf_stitched 
+		 
+```
+
+
+## Preparing Fasta for alignment
+```{bash Running gatk and bwa to prep fasta, echo=F, warning=F, include=T}
+bwa index -a bwtsw $OUTPUTDIRECTORY/RefmockPf.fa
+samtools faidx $OUTPUTDIRECTORY/RefmockPf.fa
+picard CreateSequenceDictionary REFERENCE=$OUTPUTDIRECTORY/RefmockPf.fa OUTPUT=$OUTPUTDIRECTORY/RefmockPf.dict
+		 
+```
+
+
+## Running bwa to make a bam file
+```{bash Running bwamem, echo=F, warning=F, include=T}
+bwa mem $OUTPUTDIRECTORY/RefmockPf.fa $OUTPUTDIRECTORY/MutmockPf_stitched.extendedFrags.fastq.gz | samtools view -Sb - > $OUTPUTDIRECTORY/MutmockPf_stitched.bam
+```
+
+## Sort Bam
+```{bash Running sortbam picard, echo=F, warning=F, include=T}
+
+picard SortSam I=$OUTPUTDIRECTORY/MutmockPf_stitched.bam O=$OUTPUTDIRECTORY/MutmockPf_stitched.sorted.bam SO=coordinate TMP_DIR=TMPDIR
+
+```
+
+
+## Bam2VCF to identify variant files
+```{bash Running bcftools, echo=F, warning=F, include=T}
+samtools mpileup -f $OUTPUTDIRECTORY/RefmockPf.fa $OUTPUTDIRECTORY/MutmockPf_stitched.sorted.bam -I -d 1000 --min-MQ 10 --min-BQ 20 -g | bcftools call --multiallelic-caller - --variants-only --output $OUTPUTDIRECTORY/MutmockPf_stitched.vcf --output-type v
+
+```
+
+
+
+
+
+
+
+
