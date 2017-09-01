@@ -1,0 +1,57 @@
+---
+title: "IDEEL SRA Download"
+author: "Nick Brazeau"
+date: "`r format(Sys.time(), '%B %d, %Y')`"
+output: html_document
+---
+  
+```{r setup, include=F, echo=F}
+knitr::opts_chunk$set(echo = TRUE)
+#####################################################
+#################      Imports      #################
+#####################################################
+
+#Data Wrangling
+library(tidyverse)
+library(DT)
+# SRA Downloading
+library(rentrez)
+library(SRAdb)
+library(XML)
+```
+
+# SRA Downloads
+We want to download the whole genome sequences from the following projects. 
+  1. [MalaraiGen Pf3K](https://www.malariagen.net/apps/pf3k/release_3/index.html)
+  2. [MalaraiGen Pf3K Mixtures](ftp://ngs.sanger.ac.uk/production/pf3k/release_5/pf3k_release_5_mixtures_metadata.txt)
+  2. [MalaraiGen Pf Community Project](https://www.malariagen.net/projects/p-falciparum-community-project)
+  2. [MalaraiGen Pf Genetic Crosses](https://www.malariagen.net/apps/pf-crosses/1.0/#samples)
+  2. [MalaraiGen Vivax Genome Variation, Pearson et al. 2016](https://www.malariagen.net/apps/pvgv/index.html)
+  2. [Hupalo et al. 2016 Vivax Genomic Variation](http://www.nature.com/ng/journal/v48/n8/abs/ng.3588.html?foxtrotcallback=true)
+
+
+## MalariaGen Pf3K
+This project has two components that are useful for us: samples (not yet finished) and the mixtures. For the samples, there are repeated samples names that looks like they were resequenced (i.e. PT0038-C and PT0038-Cx) but have the same ERS accession number. Will need to combine these using the R package `SRAdb`. **Below, I am going to read in their data file. This was downloaded from [Pf3K data browser](https://www.malariagen.net/apps/pf3k/release_3/index.html) on September 1, 2017. _This will  need to be updated with new data releases_**.
+
+
+
+
+
+
+
+
+
+```{r}
+setwd("~/Documents/MountPoints/mountIDEEL/Seq_Reads/")
+
+# Following the SRADB manual found here: http://bioconductor.org/packages/release/bioc/vignettes/SRAdb/inst/doc/SRAdb.pdf
+# This is to download/update the SRADB -- should probably do this periodically
+sqlfile <- 'SRAmetadb.sqlite'
+if(!file.exists('SRAmetadb.sqlite')) sqlfile <<- getSRAdbFile(destdir = "~/Documents/MountPoints/mountIDEEL/Seq_Reads/")
+sra_con <- dbConnect(SQLite(),sqlfile)
+
+
+sraConvert(in_acc = c("ERS032049"), out_type = c("sra"), sra_con = sra_con)
+
+```
+
