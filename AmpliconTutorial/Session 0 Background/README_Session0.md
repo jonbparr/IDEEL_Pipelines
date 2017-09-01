@@ -1,10 +1,11 @@
 # Amplicon Tutorial for IDEElers
-## Session 0
+## Session 0: Background
 
 This session/markdown file is meant to provide an overview of molecular work commonly done at UNC@IDEEL as well as provide computational resources for "good data sciencing". 
   
 -----
 ### Resources 
+1. Powerpoint for EPHI **(distributed to relevant parties)**.
 
 ### Tutorial Resources 
 1. Codecademy tutorials for basic/background [coding](www.codecademy.com/)

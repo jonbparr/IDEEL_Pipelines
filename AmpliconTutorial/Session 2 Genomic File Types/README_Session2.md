@@ -1,5 +1,5 @@
 # Amplicon Tutorial for IDEElers
-## Session 2
+## Session 2: Genomic File Types
 
 Here we will explore basic filetypes 
 
