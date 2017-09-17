@@ -84,8 +84,8 @@ rule index_dedups:
 
 
 rule matefix:
-	input: 'aln/{samp}.dedup.bam'
-	output: 'aln/{samp}.matefixed.bam'
+	input: 'aln/{ds}.dedup.bam'
+	output: 'aln/{ds}.matefixed.bam'
 	shell: 'java -jar {PICARD} FixMateInformation INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
 	
 	
