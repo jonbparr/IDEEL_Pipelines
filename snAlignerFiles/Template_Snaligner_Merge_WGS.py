@@ -50,7 +50,7 @@ rule all:
 #    input: expand('aln/{ds}.sorted.bam', ds = DATEDSAMPS)
 #	input: expand('aln/{ds}.dedup.bam', ds = DATEDSAMPS) 
 #	input: 'merge.log.file'                                                 # Run to here and then check file
-#    input: expand('aln/{merge}.matefixed.bam.bai', merge = MERGEDSAMPS) 
+#    input: expand('aln/{merge}.merged.bam.bai', merge = MERGEDSAMPS) 
 #   input: expand('aln/{merge}.realigner.intervals', merge = MERGEDSAMPS) 
 #	input: expand('aln/{merge}.realn.bam', merge = MERGEDSAMPS) 
 
@@ -68,9 +68,9 @@ rule index_realigned:
 	shell: 'java -jar {PICARD} BuildBamIndex INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
 
 rule realn_indels:
-	input: bam = 'aln/{merge}.matefixed.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{merge}.realigner.intervals', 
+	input: bam = 'aln/{merge}.merged.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{merge}.realigner.intervals', 
 	output: 'aln/{merge}.realn.bam'
-	shell: 'java -jar {GATK2} -T IndelRealigner \
+	shell: 'java -jar {GATK} -T IndelRealigner \
 		-R {REF} -I {input.bam} \
 		-L {input.chrs} -targetIntervals {input.targets} \
 		-o {output}' 
@@ -79,16 +79,16 @@ rule realn_indels:
 		# Interval file from CMP direcotry
 
 rule find_indels:
-	input: bam = 'aln/{merge}.matefixed.bam', index = 'aln/{merge}.matefixed.bam.bai', chrs = 'intervals/all_chrs.intervals'
+	input: bam = 'aln/{merge}.merged.bam', index = 'aln/{merge}.merged.bam.bai', chrs = 'intervals/all_chrs.intervals'
 	output: 'aln/{merge}.realigner.intervals'
-	shell: 'java -jar {GATK2} -T RealignerTargetCreator \
+	shell: 'java -jar {GATK} -T RealignerTargetCreator \
 		-R {REF} -I {input.bam} \
 		-L {input.chrs} -o {output}'
 		# all_chrs.intervals includes just  chrs and mito
 
 rule index_merged: 
-	input: 'aln/{merge}.matefixed.bam'
-	output: 'aln/{merge}.matefixed.bam.bai'
+	input: 'aln/{merge}.merged.bam'
+	output: 'aln/{merge}.merged.bam.bai'
 	shell: 'java -jar {PICARD} BuildBamIndex INPUT={input} OUTPUT={output} TMP_DIR={TMPDIR}'
 
 
