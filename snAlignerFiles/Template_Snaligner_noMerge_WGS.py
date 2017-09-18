@@ -19,9 +19,9 @@ DATEDSAMPS, = glob_wildcards(WRKDIR + 'fastq/{ds}_R1.fastq.gz')
 #GFF = '/proj/ideel/meshnick/Genomes/PvSAL1_v13.0/PlasmoDB-13.0_PvivaxSal1.gff'
 
 ##### Turn on for Pf ##########
-#REF = '/proj/ideel/julianog/refs/Pf3D7_v13.0/PlasmoDB-13.0_Pfalciparum3D7_Genome.fasta'
-REF2 = '/proj/ideel/meshnick/Genomes/Pf3D7_Pf3KDownload/Pfalciparum.genome.fasta'
-GFF = '/proj/ideel/julianog/refs/Pf3D7_v13.0/PlasmoDB-13.0_Pfalciparum3D7.gff'
+REF = '/proj/ideel/resources/genomes/Pfalciparum/genomes/Pf3d7.fasta'
+GFF = '/proj/ideel/resources/genomes/Pfalciparum/info/gff/Pf3d7.gff'
+
 
 ######## Tools to Call #########
 PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java/picard.jar'
