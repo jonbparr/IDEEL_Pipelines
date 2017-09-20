@@ -46,7 +46,7 @@ TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
 rule all:
 # SUMMARYSTATS
 #	input: 'symlinks/FASTQC/Log.txt'
-#	input: 'SumSTATsandQC/ValidateBams.tab.txt'
+	input: expand('SumSTATsandQC/ValidateBAM/{sample}.validatebams.txt', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/AlignSummary/{sample}.AlignSummary.Metrics', 'SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', 'SumSTATsandQC/coverage/data/{sample}.cov', 'SumSTATsandQC/coverage/d_bedtools/{sample}.dbedtools.cov', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/AlignSummary/{sample}.AlignSummary.Metrics', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', sample = SAMPLES)
@@ -56,7 +56,6 @@ rule all:
 #	input: 'SumSTATsandQC/coverage/{params.prefix}_individual_bedgraph_plot.pdf'
 #	input: 'multiqc.report'
 
-	
 ###############################################################################
 
 
@@ -137,10 +136,10 @@ rule AlignSummaryMetrics:
 ########   VALIDATE SAM FILE MODULE   #########
 ###############################################
 rule ValidateSamFile:
-	input: expand('aln/{sample}.recal.realn.bam', sample=SAMPLES)
-	output: 'SumSTATsandQC/ValidateBams.tab.txt'
+	input:'aln/{sample}.realn.bam'
+	output: 'SumSTATsandQC/ValidateBAM/{sample}.validatebams.txt'
 	shell: 'java -jar {PICARD} ValidateSamFile \
-		I={input} >> {output} '
+		I={input} OUTPUT={output} '
 	# After this step you should run from the command line `cat 'SumSTATsandQC/ValidateBams.tab.txt | grep "ERROR"` -- if there are errors, STOP and figure out why
 	
 ######################################
