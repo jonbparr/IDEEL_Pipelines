@@ -62,7 +62,7 @@ rule realn_indels:
 	input: bam = 'aln/{ds}.matefixed.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{ds}.realigner.intervals', 
 	output: 'aln/{ds}.realn.bam'
 	shell: 'java -jar {GATK} -T IndelRealigner \
-		-R {REF2} -I {input.bam} \
+		-R {REF} -I {input.bam} \
 		-L {input.chrs} -targetIntervals {input.targets} \
 		-o {output}' 
 		# all_chrs.intervals includes just chrs and mito -- it is similar to a bed file for GATK Caller
@@ -73,7 +73,7 @@ rule find_indels:
 	input: bam = 'aln/{ds}.matefixed.bam', index = 'aln/{ds}.matefixed.bam.bai', chrs = 'intervals/all_chrs.intervals'
 	output: 'aln/{ds}.realigner.intervals'
 	shell: 'java -jar {GATK} -T RealignerTargetCreator \
-		-R {REF2} -I {input.bam} \
+		-R {REF} -I {input.bam} \
 		-L {input.chrs} -o {output}'
 		# all_chrs.intervals includes just  chrs and mito
 
