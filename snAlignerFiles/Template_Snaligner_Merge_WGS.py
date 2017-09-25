@@ -116,7 +116,7 @@ rule mark_dups:
 	shell: 'java -jar {PICARD} MarkDuplicates \
 		I={input} O={output[0]} \
 		METRICS_FILE={output[1]} \
-		TMP_DIR={TMPDIR} REMOVE_DUPLICATES=TRUE \
+		TMP_DIR={TMPDIR} REMOVE_DUPLICATES=FALSE \
 		MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000'
 
 rule sort_bam:
