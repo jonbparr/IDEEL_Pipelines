@@ -62,7 +62,7 @@ rule realn_indels:
 	input: bam = 'aln/{ds}.matefixed.bam', chrs = 'intervals/all_chrs.intervals', targets = 'aln/{ds}.realigner.intervals', 
 	output: 'aln/{ds}.realn.bam'
 	shell: 'java -jar {GATK} -T IndelRealigner \
-		-R {REF2} -I {input.bam} \
+		-R {REF} -I {input.bam} \
 		-L {input.chrs} -targetIntervals {input.targets} \
 		-o {output}' 
 		# all_chrs.intervals includes just chrs and mito -- it is similar to a bed file for GATK Caller
@@ -73,7 +73,7 @@ rule find_indels:
 	input: bam = 'aln/{ds}.matefixed.bam', index = 'aln/{ds}.matefixed.bam.bai', chrs = 'intervals/all_chrs.intervals'
 	output: 'aln/{ds}.realigner.intervals'
 	shell: 'java -jar {GATK} -T RealignerTargetCreator \
-		-R {REF2} -I {input.bam} \
+		-R {REF} -I {input.bam} \
 		-L {input.chrs} -o {output}'
 		# all_chrs.intervals includes just  chrs and mito
 
@@ -95,8 +95,9 @@ rule mark_dups:
 	shell: 'java -jar {PICARD} MarkDuplicates \
 		I={input} O={output[0]} \
 		METRICS_FILE={output[1]} \
-		TMP_DIR={TMPDIR} REMOVE_DUPLICATES=TRUE \
+		TMP_DIR={TMPDIR} REMOVE_DUPLICATES=FALSE \
 		MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000'
+		# Note have changed this to false as part of keeping more information and GATK best practices (https://gatkforums.broadinstitute.org/gatk/discussion/6747) and picard defaults
 
 rule sort_bam:
 	input: 'aln/{ds}.bam'

@@ -118,7 +118,8 @@ rule mark_dups:
 		METRICS_FILE={output[1]} \
 		TMP_DIR={TMPDIR} REMOVE_DUPLICATES=FALSE \
 		MAX_FILE_HANDLES_FOR_READ_ENDS_MAP=1000'
-
+    # Note have changed this to false as part of keeping more information and GATK best practices (https://gatkforums.broadinstitute.org/gatk/discussion/6747) and picard defaults
+    
 rule sort_bam:
 	input: 'aln/{ds}.bam'
 	output: 'aln/{ds}.sorted.bam'
