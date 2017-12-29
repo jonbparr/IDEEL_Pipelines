@@ -36,7 +36,8 @@ sra_con <- dbConnect(SQLite(),sqlfile)
 
 
 ----------
-
+# Overview
+**Downloads will be hosted under `/proj/ideel/Seq_Reads/SRADownloads` and named journal_author_year**. 
 
 # SRA Downloads for P. falciparum 
 We want to download the whole genome sequences from the following projects for Pfalciparum. 
