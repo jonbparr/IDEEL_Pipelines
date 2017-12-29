@@ -47,52 +47,18 @@ rule all:
 # SUMMARYSTATS
 #	input: 'symlinks/FASTQC/Log.txt'
 	input: expand('SumSTATsandQC/ValidateBAM/{sample}.validatebams.txt', sample = SAMPLES)
-#	input: expand('SumSTATsandQC/AlignSummary/{sample}.AlignSummary.Metrics', 'SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', 'SumSTATsandQC/coverage/data/{sample}.cov', 'SumSTATsandQC/coverage/d_bedtools/{sample}.dbedtools.cov', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/AlignSummary/{sample}.AlignSummary.Metrics', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/coverage/data/{sample}.cov', sample = SAMPLES)
-#	input: expand('SumSTATsandQC/coverage/d_bedtools/{sample}.dbedtools.cov', sample = SAMPLES)
 #	input: 'SumSTATsandQC/coverage/{params.prefix}cov_heatmap.pdf'
-#	input: 'SumSTATsandQC/coverage/{params.prefix}_individual_bedgraph_plot.pdf'
-#	input: 'multiqc.report'
-
+#
 ###############################################################################
 
 
-#####################################
-########   MultiQC Summary   ########
-#####################################
-rule multiqc: 
-	input: alignmet='SumSTATsandQC/AlignSummary/', flagstats='SumSTATsandQC/FlagStats/', fastqc='symlinks/FASTQC/'
-	output: 'multiqc.report'
-	shell: 'multiqc {input.alignment} {input.flagstats} {input.fastqc}'
-#This is going to clash with python versions. Need to figure out later
 
 ######################################
 ########   Quality Control   #########
 #####################################
-
-rule RunQC:
-	output: 'QCCompleted.tab.txt'
-	shell: 'bash QCdiscovery.sh ; echo "QC Performed and completed" > {output}'
-
-
-
-######################################
-######## Summary Statistics #########
-#####################################
-# rule plot_bedgraph:
-# 	input:	expand('SumSTATsandQC/coverage/d_bedtools/{sample}.dbedtools.cov', sample = SAMPLES)
-# 	params:	idir = 'SumSTATsandQC/coverage/d_bedtools/', 
-# 		prefix = '1877_Plasmepsin_Samples_', 
-# 		odir = 'SumSTATsandQC/coverage/',
-# 		jackpot = '50',
-# 		window = '1000',
-# 		yaxis = 'names/1877Sample.list',
-# 		title= '1877 Samples',
-# 	output:	'SumSTATsandQC/coverage/{params.prefix}_individual_bedgraph_plot.pdf', 
-# 		'SumSTATsandQC/coverage/{params.prefix}_stacked_bedgraph.pdf'
-# 	shell:	'Coverage_Analyzer_Bedgrapher -I {params.idir} -O {params.odir} -F {params.prefix} -J {params.jackpot} -W {params.window} -Y {params.yaxis} -T {params.title} '
 
 rule plot_coverage:
 	input:	expand('SumSTATsandQC/coverage/data/{sample}.cov', sample = SAMPLES)
@@ -102,11 +68,6 @@ rule plot_coverage:
 	output:	'SumSTATsandQC/coverage/{params.prefix}cov_plot.pdf', 
 		'SumSTATsandQC/coverage/{params.prefix}cov_heatmap.pdf'
 	shell:	'covPlotter -I {params.idir} -O {params.odir} -F {params.prefix}'
-
-# rule d_bedtools_cov_forbedgraph:
-# 	input: 'aln/{sample}.recal.realn.bam'
-# 	output: 'SumSTATsandQC/coverage/d_bedtools/{sample}.dbedtools.cov'
-# 	shell: 'bedtools genomecov -d -g {GFF} -ibam {input} > {output}'
 
 
 rule calculate_cov_forheatmap:
