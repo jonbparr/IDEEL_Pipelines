@@ -11,8 +11,8 @@
 
 ####### Working Directory and Project Specifics ############
 ####### Working Directory and Project Specifics ############
-WRKDIR = '/your/directory/'
-readWD = '/your/directory/'
+WRKDIR = '/pine/'
+readWD = '/proj/ideel/YOURDIRECTORY'
 SAMPLES, = glob_wildcards(WRKDIR + 'symlinks/{samp}_R1.fastq.gz')
 MERGEDSAMPS, = glob_wildcards(WRKDIR + 'aln/{ms}.merged.bam')
 MTDT = '/your/directory/metadata.txt'
@@ -20,7 +20,7 @@ MTDT = '/your/directory/metadata.txt'
 
 ################   REFERENCE    ##############
 REF = '/your/reffasta'
-GFF = '//your/refgff'
+GFF = '/your/refgff'
 
 ######## Tools to Call #########
 ######## Always on #########

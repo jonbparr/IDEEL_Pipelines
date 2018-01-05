@@ -8,19 +8,19 @@
 
 
 ####### Working Directory and Project Specifics ############
-WRKDIR = '/proj/ideel/meshnick/users/NickB/Projects/ASAP90/IlluminaData/dhfr/'
-readWD = '/proj/ideel/meshnick/users/NickB/Projects/ASAP90/IlluminaData/dhfr/'
-SAMPS, = glob_wildcards(WRKDIR + 'aln/{samp}.realn.bam')
+WRKDIR = '/pine/'
+readWD = '/proj/ideel/YOURDIRECTORY'
+SAMPS, = glob_wildcards(WRKDIR + 'symlinks/{samp}_R1.fastq.gz')
 
 ######## REFERENCE SEQ ########
-ref = '/proj/ideel/meshnick/users/NickB/Projects/ASAP90/IlluminaData/dhfr/ref/dhfr'
-ref2 = '/proj/ideel/meshnick/users/NickB/Projects/ASAP90/IlluminaData/dhfr/ref/dhfr.fasta'
-twobit = '/proj/ideel/meshnick/users/NickB/Projects/ASAP90/IlluminaData/cytB/ref/dhfr.2bit'
+ref = '/ref/directory_for_bowtie'
+
 
 ######## Always on #########
-PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java/picard.jar'
-GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
-FLASH = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/flash/1.2.11/bin/flash'
+PICARD = '/proj/ideel/apps/brew/share/java/picard.jar'
+GATK = '/proj/ideel/apps/brew/share/java/GenomeAnalysisTK.jar'
+FLASH = '/proj/ideel/apps/brew/Cellar/flash/1.2.11/bin/flash'
+TRIMMOMATIC = '/proj/ideel/apps/brew/share/java/trimmomatic-0.36.jar'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
 
 ##########################################################################################
