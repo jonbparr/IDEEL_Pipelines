@@ -11,29 +11,21 @@
 
 
 ####### Working Directory and Project Specifics ############
-WRKDIR = '/proj/ideel/meshnick/users/NickB/Projects/Rhea_Plasmepsin_Rx/'
-readWD = '/proj/ideel/meshnick/users/NickB/Projects/Rhea_Plasmepsin_Rx/'
-#SAMPLES, = glob_wildcards(WRKDIR + 'symlinks/{sample}_R1.fastq.gz')
+WRKDIR = '/proj/ideel/YOURDIRECTORY'
+readWD = '/proj/ideel/YOURDIRECTORY'
 FQS, = glob_wildcards(WRKDIR + 'symlinks/{fq}.fastq.gz')
 SAMPLES, = glob_wildcards(WRKDIR + 'aln/{sample}.realn.bam')
 
-####### Turn on for Pv ##########
-#REF = '/proj/meshnick/Genomes/PvSAL1_v13.0/PlasmoDB-13.0_PvivaxSal1_Genome.fasta'
-#GFF = '/proj/meshnick/Genomes/PvSAL1_v13.0/PlasmoDB-13.0_PvivaxSal1.gff'
-
-##### Turn on for Pf PlasmoDB Version 13.0 ##########
-#REF = '/proj/julianog/refs/Pf3D7_v13.0/PlasmoDB-13.0_Pfalciparum3D7_Genome.fasta'
-#GFF = '/proj/julianog/refs/Pf3D7_v13.0/PlasmoDB-13.0_Pfalciparum3D7.gff'
-
-##### Turn on for Pf Sanger Version 13.0 BETA ##########
-REF = '/proj/ideel/meshnick/Genomes/Pf3D7_Sanger2017/Pfalciparum.genome.fasta'
-GFF = '/proj/ideel/meshnick/Genomes/Pf3D7_Sanger2017/Pfalciparum.gff3'
-# Note this version is compatible with the Pf3k Pipeline 
+################   REFERENCE    ##############
+REF = '/your/reffasta'
+GFF = '/your/refgff'
 
 ######## Tools to Call #########
-PICARD = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/picard-tools/2.9.0/share/java/picard.jar'
-GATK = '/nas02/home/n/f/nfb/.linuxbrew/Cellar/gatk/3.6/share/java/GenomeAnalysisTK.jar'
-FLASH = '/nas/longleaf/home/nfb/.linuxbrew/Cellar/flash/1.2.11/bin/flash'
+######## Always on #########
+PICARD = '/proj/ideel/apps/brew/share/java/picard.jar'
+GATK = '/proj/ideel/apps/brew/share/java/GenomeAnalysisTK.jar'
+FLASH = '/proj/ideel/apps/brew/Cellar/flash/1.2.11/bin/flash'
+TRIMMOMATIC = '/proj/ideel/apps/brew/share/java/trimmomatic-0.36.jar'
 TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
 
 
