@@ -11,9 +11,10 @@
 
 ####### Working Directory and Project Specifics ############
 ####### Working Directory and Project Specifics ############
+workdir: '/pine/'
 WRKDIR = '/pine/'
 readWD = '/proj/ideel/YOURDIRECTORY'
-SAMPLES, = glob_wildcards(WRKDIR + 'symlinks/{samp}_R1.fastq.gz')
+SAMPLES, = glob_wildcards(readWD + 'symlinks/{samp}_R1.fastq.gz')
 MERGEDSAMPS, = glob_wildcards(WRKDIR + 'aln/{ms}.merged.bam')
 MTDT = '/your/directory/metadata.txt'
 
@@ -114,7 +115,7 @@ rule sort_bam:
 rule fastq_to_bam:
 	input: 'symlinks/{samp}_R1.PAIREDtrimmomatictrimmed.fastq.gz'
 	output: 'aln/{samp}.raw.bam'
-	shell: 'bwa mem {REF} {readWD}{input[0]} \
+	shell: 'bwa mem {REF} {input[0]} \
 		-R "@RG\tID:bwa\tPL:illumina\tLB:{wildcards.samp}_lib\tSM:{wildcards.samp[0]}{wildcards.samp[1]}{wildcards.samp[2]}{wildcards.samp[3]}{wildcards.samp[4]}" \
 		 | samtools view -Sb - > {output}'
 		# calling the @RG ID: 'bwa' because this resolves a clash with @PG ID --> I updated this recently to make it more unique for MERGING
@@ -122,9 +123,9 @@ rule fastq_to_bam:
 
 
 rule trim_illumina_Adaptors_fastqs:
-	 input: 'symlinks/pairedfastqs/{samp}_1.fastq.gz', 'symlinks/pairedfastqs/{samp}_2.fastq.gz', 
+	 input: readWD + 'symlinks/pairedfastqs/{samp}_1.fastq.gz', readWD + 'symlinks/pairedfastqs/{samp}_2.fastq.gz', 
 	 output: 'symlinks/pairedfastqs/{samp}_R1.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/pairedfastqs/{samp}_R1.UNPAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/pairedfastqs/{samp}_R2.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/pairedfastqs/{samp}_R2.UNPAIREDtrimmomatictrimmed.fastq.gz',  
-	 shell: 'trimmomatic PE -threads 12 -trimlog symlinks/trim_log.txt {readWD}{input[0]} {readWD}{input[1]} {output[0]} {output[1]} {output[2]} {output[3]} ILLUMINACLIP:/nas/longleaf/apps/trimmomatic/0.36/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36'
+	 shell: 'trimmomatic PE -threads 12 -trimlog symlinks/trim_log.txt {input[0]} {input[1]} {output[0]} {output[1]} {output[2]} {output[3]} ILLUMINACLIP:/nas/longleaf/apps/trimmomatic/0.36/Trimmomatic-0.36/adapters/TruSeq3-PE.fa:2:30:10:8:TRUE LEADING:3 TRAILING:3 SLIDINGWINDOW:4:15 MINLEN:36'
      # The TRUE at the end keeps the paired end reads in R2
      # Want to align the PAIRED trimmed
      #adapterremoval, https://github.com/MikkelSchubert/adapterremoval
