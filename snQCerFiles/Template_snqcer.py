@@ -43,7 +43,7 @@ rule all:
 #	input: expand('SumSTATsandQC/FlagStats/{sample}.samtools.flagstats', sample = SAMPLES)
 #	input: expand('SumSTATsandQC/coverage/data/{sample}.cov', sample = SAMPLES)
 #	input: 'SumSTATsandQC/coverage/{params.prefix}cov_heatmap.pdf'
-#
+#   input: expand('SumSTATsandQC/CallableLoci/{sample}_callable_status.bed', sample = SAMPLES)
 ###############################################################################
 
 
@@ -51,6 +51,18 @@ rule all:
 ######################################
 ########   Quality Control   #########
 #####################################
+
+rule CallableLoci_By_SAMPLE:
+	input: bams = 'aln/{sample}.realn.bam',
+	output: bedfile = 'SumSTATsandQC/CallableLoci/{sample}_callable_status.bed', summarytable = 'SumSTATsandQC/CallableLoci/{sample}_summarytable.txt'
+	shell: 'java -jar {GATK} -T CallableLoci \
+		-R {REF} \
+		-I {input.bams} \
+		--minBaseQuality 20 \
+		--minMappingQuality 10 \
+		--minDepth 4 \
+		-summary {output.summarytable} \
+		-o {output.bedfile}'
 
 rule plot_coverage:
 	input:	expand('SumSTATsandQC/coverage/data/{sample}.cov', sample = SAMPLES)
