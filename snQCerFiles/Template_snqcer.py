@@ -105,8 +105,7 @@ rule ValidateSamFile:
 	output: 'SumSTATsandQC/ValidateBAM/{sample}.validatebams.txt'
 	shell: 'java -jar {PICARD} ValidateSamFile \
 	    MODE=SUMMARY \
-		I={input} \
-		OUTPUT={output}'
+		I={input} > {output}'
 	# After this step you should run from the command line `cat 'SumSTATsandQC/ValidateBams.tab.txt | grep "ERROR"` -- if there are errors, STOP and figure out why	
 		
 ######################################
