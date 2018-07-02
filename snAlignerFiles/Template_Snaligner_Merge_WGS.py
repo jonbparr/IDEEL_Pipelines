@@ -13,7 +13,7 @@
 ####### Working Directory and Project Specifics ############
 workdir: '/pine/'
 WRKDIR = '/pine/'
-readWD = '/proj/ideel/YOURDIRECTORY'
+readWD = '/proj/ideel/YOURDIRECTORY/'
 SAMPLES, = glob_wildcards(readWD + 'symlinks/{samp}_R1.fastq.gz')
 MERGEDSAMPS, = glob_wildcards(WRKDIR + 'aln/{ms}.merged.bam')
 MTDT = '/your/directory/metadata.txt'
@@ -29,7 +29,7 @@ PICARD = '/proj/ideel/apps/brew/share/java/picard.jar'
 GATK = '/proj/ideel/apps/brew/share/java/GenomeAnalysisTK.jar'
 FLASH = '/proj/ideel/apps/brew/Cellar/flash/1.2.11/bin/flash'
 TRIMMOMATIC = '/proj/ideel/apps/brew/share/java/trimmomatic-0.36.jar'
-TMPDIR = '/pine/scr/n/f/nfb/PicardandGATKscratch'
+TMPDIR = '/pine/scr/o/n/onyen/PicardandGATKscratch'
 
 ##########################################################################################
 
@@ -113,9 +113,9 @@ rule sort_bam:
 
 
 rule fastq_to_bam:
-	input: 'symlinks/{samp}_R1.PAIREDtrimmomatictrimmed.fastq.gz'
+	input: 'symlinks/{samp}_R1.PAIREDtrimmomatictrimmed.fastq.gz', 'symlinks/{samp}_R2.PAIREDtrimmomatictrimmed.fastq.gz'
 	output: 'aln/{samp}.raw.bam'
-	shell: 'bwa mem {REF} {input[0]} \
+	shell: 'bwa mem {REF} {input[0]} {input[1]} \
 		-R "@RG\tID:bwa\tPL:illumina\tLB:{wildcards.samp}_lib\tSM:{wildcards.samp[0]}{wildcards.samp[1]}{wildcards.samp[2]}{wildcards.samp[3]}{wildcards.samp[4]}" \
 		 | samtools view -Sb - > {output}'
 		# calling the @RG ID: 'bwa' because this resolves a clash with @PG ID --> I updated this recently to make it more unique for MERGING
